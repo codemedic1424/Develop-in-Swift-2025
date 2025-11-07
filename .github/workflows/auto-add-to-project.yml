@@ -1,17 +1,55 @@
-name: Auto-Add Issues to Project Board
+name: Auto Add Issues and Sync Pathways
+
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
+  push:
+    branches:
+      - main
+
+permissions:
+  issues: write
+  projects: write
 
 jobs:
-  add-to-project:
+  auto-add:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      projects: write
     steps:
-      - name: Add issue to project
-        uses: actions/add-to-project@v1.0.1
+      - name: Add new issue to project board
+        uses: actions/add-to-project@v0.5.0
         with:
-          project-url: https://github.com/users/codemedic1424/projects/1
+          project-url: https://github.com/users/codemedic1424/projects/7
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  sync-pathways:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect updated pathways and create issues
+        run: |
+          echo "🔍 Checking for updated pathway folders..."
+          git fetch origin main --depth=2
+          
+          if git diff --name-only HEAD~1 HEAD | grep -q 'SwiftUI_Projects'; then
+            gh issue create \
+              --title "SwiftUI Pathway Update" \
+              --body "✅ New commits detected in **SwiftUI_Projects** — review your project progress tracker." \
+              --repo codemedic1424/Develop-in-Swift-2025 || true
+          fi
+
+          if git diff --name-only HEAD~1 HEAD | grep -q 'Swift'; then
+            gh issue create \
+              --title "Swift Language Pathway Update" \
+              --body "🦅 Updates found in **Swift Pathway** — sync your progress in the tracker." \
+              --repo codemedic1424/Develop-in-Swift-2025 || true
+          fi
+
+          if git diff --name-only HEAD~1 HEAD | grep -q 'Develop'; then
+            gh issue create \
+              --title "Develop in Swift Tutorials Update" \
+              --body "📘 New work detected in **Develop in Swift** tutorials — verify milestone completion." \
+              --repo codemedic1424/Develop-in-Swift-2025 || true
+          fi
