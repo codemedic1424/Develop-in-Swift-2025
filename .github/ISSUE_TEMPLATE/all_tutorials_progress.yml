@@ -4,26 +4,23 @@ labels: [progress, tracking]
 projects:
   - "codemedic1424/Develop in Swift 2025 — Progress Tracker"
 
-
 body:
   - type: dropdown
-   id: pathway
-attributes:
-  label: "📘 Pathway"
-  description: "Select the learning pathway this progress update belongs to."
-  options:
-    - "🦅 Swift Language Pathway"
-    - "🌿 SwiftUI Pathway"
-    - "🧩 Develop in Swift Tutorials"
-    - "🧱 Guided Projects"
-    - "🧪 Labs (Develop in Swift Fundamentals)"
-    - "🏗️ Daily Motivation (Custom App)"
-    - "📚 General / Review"
-  # 👇 Add this line
-  project_field: "Pathway"
-validations:
-  required: true
-
+    id: pathway
+    attributes:
+      label: "📘 Pathway"
+      description: "Select the learning pathway this progress update belongs to."
+      options:
+        - "🦅 Swift Language Pathway"
+        - "🌿 SwiftUI Pathway"
+        - "🧩 Develop in Swift Tutorials"
+        - "🧱 Guided Projects"
+        - "🧪 Labs (Develop in Swift Fundamentals)"
+        - "🏗️ Daily Motivation (Custom App)"
+        - "📚 General / Review"
+      project_field: "Pathway"
+    validations:
+      required: true
 
   - type: markdown
     attributes:
