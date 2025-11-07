@@ -1,0 +1,60 @@
+name: All Tutorials Progress Tracker
+description: Track your progress across all Apple Swift learning pathways (Swift, SwiftUI, and Develop in Swift)
+title: "Progress — All Tutorials Overview"
+labels: ["progress", "tracking"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 🧭 Develop in Swift 2025 — Complete Progress Tracker
+        Track your journey through every tutorial and pathway in Apple’s official curriculum.
+
+  - type: checkboxes
+    attributes:
+      label: "🦅 Swift Language Pathway"
+      description: "Core Swift syntax and programming fundamentals."
+      options:
+        - label: "A Swift Tour"
+        - label: "The Basics"
+        - label: "Collection Types"
+        - label: "Control Flow & Functions"
+        - label: "Structures, Classes & Enums"
+        - label: "Protocols & Generics"
+        - label: "Concurrency"
+        - label: "Macros & Advanced Topics"
+
+  - type: checkboxes
+    attributes:
+      label: "🌿 SwiftUI Pathway"
+      description: "Declarative UI design and layout fundamentals."
+      options:
+        - label: "Getting Started with SwiftUI"
+        - label: "Views and Modifiers"
+        - label: "State and Data Flow"
+        - label: "Lists and Navigation"
+        - label: "Animations and Gestures"
+        - label: "Data Persistence with SwiftData"
+        - label: "Testing and Debugging SwiftUI Apps"
+
+  - type: checkboxes
+    attributes:
+      label: "🧩 Develop in Swift Tutorials"
+      description: "Full project-based tutorials for Apple platforms."
+      options:
+        - label: "Meet Xcode"
+        - label: "App Design"
+        - label: "App Development"
+        - label: "Machine Learning"
+        - label: "Spatial Computing (visionOS)"
+        - label: "App Distribution"
+
+  - type: textarea
+    attributes:
+      label: "Notes & Learnings"
+      description: "Record insights, code snippets, or reflections here."
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ✅ **Tip:** Each section links to your project board automatically — mark completed tutorials and add notes as you go.
