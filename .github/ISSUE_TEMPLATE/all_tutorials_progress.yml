@@ -1,7 +1,26 @@
 name: All Tutorials Progress Tracker
 description: Track your progress across all Apple Swift learning pathways (Swift, SwiftUI, and Develop in Swift)
+
 title: "Progress — All Tutorials Overview"
 labels: ["progress", "tracking"]
+
+body:
+  - type: dropdown
+    id: pathway
+    attributes:
+      label: "📘 Pathway"
+      description: "Select the learning pathway this progress update belongs to."
+      options:
+        - "🦅 Swift Language Pathway"
+        - "🌿 SwiftUI Pathway"
+        - "🧩 Develop in Swift Tutorials"
+        - "🧱 Guided Projects"
+        - "🧪 Labs (Develop in Swift Fundamentals)"
+        - "🏗️ Daily Motivation (Custom App)"
+        - "📚 General / Review"
+    validations:
+      required: true
+
 body:
   - type: markdown
     attributes:
