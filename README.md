@@ -18,8 +18,8 @@ This repository follows the official Apple pathway order — **Swift → SwiftUI
 
 | Module | Title | Status | Notes |
 |---------|--------|--------|-------|
-| 0 | Meet Xcode | ⏳ In Progress | Installing Xcode 16 and setting up project. |
-| 1 | App Design | ☐ Not Started |  |
+| 0 | Meet Xcode | ✅ Complete | Installing Xcode 16 and setting up project. |
+| 1 | App Design | ⏳ In Progress | Turn your ideas into an intuituve iOS app design.  |
 | 2 | SwiftUI | ☐ Not Started |  |
 | 3 | Data Modeling | ☐ Not Started |  |
 | 4 | App Development | ☐ Not Started |  |
