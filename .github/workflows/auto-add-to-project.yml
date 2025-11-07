@@ -9,8 +9,8 @@ on:
 
 permissions:
   issues: write
-  project: write
-  contents: read
+  repository-projects: write
+
 
 jobs:
   auto-add:
