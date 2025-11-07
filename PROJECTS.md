@@ -20,7 +20,7 @@ This file links each pathway and tutorial milestone to your GitHub Projects boar
 ### **Phase 1 — Prerequisites**
 | Task | Pathway | Status | Link |
 |------|----------|--------|------|
-| 🦅 Learn Swift fundamentals | Swift Language Pathway | ⏳ In Progress | [Get Started with Swift](https://developer.apple.com/swift/get-started/) |
+| 🦅 Learn Swift fundamentals | Swift Language Pathway | ✅ Completed | [Get Started with Swift](https://developer.apple.com/swift/get-started/) |
 | 🌿 Explore SwiftUI concepts | SwiftUI Pathway | ☐ Not Started | [SwiftUI Pathway](https://developer.apple.com/pathways/swiftui/) |
 | 📘 Review recommended order doc | Overview Recommended Order.md | ✅ Complete | ./00_Prerequisites/Overview_Recommended_Order.md |
 
@@ -29,8 +29,8 @@ This file links each pathway and tutorial milestone to your GitHub Projects boar
 ### **Phase 2 — Develop in Swift Tutorials**
 | Module | Title | Status | Folder |
 |---------|--------|--------|--------|
-| 0 | Meet Xcode | ⏳ In Progress | ./01_Develop_in_Swift/Module_0_Meet_Xcode |
-| 1 | App Design | ☐ Not Started | ./01_Develop_in_Swift/Module_1_App_Design |
+| 0 | Meet Xcode | ✅ Completed | ./01_Develop_in_Swift/Module_0_Meet_Xcode |
+| 1 | App Design | ⏳ In Progress | ./01_Develop_in_Swift/Module_1_App_Design |
 | 2 | SwiftUI | ☐ Not Started | ./01_Develop_in_Swift/Module_2_SwiftUI |
 | 3 | Data Modeling | ☐ Not Started | ./01_Develop_in_Swift/Module_3_Data_Modeling |
 | 4 | App Development | ☐ Not Started | ./01_Develop_in_Swift/Module_4_App_Development |
