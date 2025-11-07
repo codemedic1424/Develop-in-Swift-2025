@@ -1,0 +1,50 @@
+name: "📘 Module Progress Tracker"
+description: "Track your progress through a specific Develop in Swift 2025 module"
+title: "Module X – [Module Title Here]"
+labels: ["module-progress"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Module Progress Tracker
+
+        Use this issue to track your progress through a specific tutorial module in the **Develop in Swift 2025 Pathway**.
+
+  - type: input
+    id: module_number
+    attributes:
+      label: "Module Number"
+      description: "Enter the number (0–6) for this module."
+      placeholder: "e.g., 1"
+
+  - type: input
+    id: module_title
+    attributes:
+      label: "Module Title"
+      description: "Enter the title of the module."
+      placeholder: "e.g., App Design"
+
+  - type: textarea
+    id: current_focus
+    attributes:
+      label: "Current Focus"
+      description: "Describe which lessons or challenges you’re currently working on."
+      placeholder: "Design iteration, prototype testing, data modeling, etc."
+
+  - type: checkboxes
+    id: progress_checklist
+    attributes:
+      label: "Progress Checklist"
+      options:
+        - label: "🔍 Read module overview"
+        - label: "🧱 Completed tutorial exercises"
+        - label: "🧪 Built code samples in Xcode"
+        - label: "📝 Added summary to project folder"
+        - label: "✅ Reviewed wrap-up section"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes & Observations"
+      description: "Any observations, debugging insights, or takeaways from the module."
+      placeholder: "Optional notes..."
