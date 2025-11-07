@@ -1,8 +1,6 @@
 name: All Tutorials Progress Tracker
 description: Track your progress across all Apple Swift learning pathways (Swift, SwiftUI, and Develop in Swift)
-
-title: "Progress — All Tutorials Overview"
-labels: ["progress", "tracking"]
+labels: [progress, tracking]
 
 body:
   - type: dropdown
@@ -21,17 +19,24 @@ body:
     validations:
       required: true
 
-body:
   - type: markdown
     attributes:
       value: |
-        # 🧭 Develop in Swift 2025 — Complete Progress Tracker
+        🧭 **Develop in Swift 2025 — Complete Progress Tracker**
+
         Track your journey through every tutorial and pathway in Apple’s official curriculum.
 
-  - type: checkboxes
+  - type: markdown
     attributes:
-      label: "🦅 Swift Language Pathway"
-      description: "Core Swift syntax and programming fundamentals."
+      value: |
+        ---
+        ## 🦅 Swift Language Pathway
+        *Core Swift syntax and programming fundamentals.*
+
+  - type: checkboxes
+    id: swift-language
+    attributes:
+      label: "Swift Language Pathway Modules"
       options:
         - label: "A Swift Tour"
         - label: "The Basics"
@@ -42,10 +47,17 @@ body:
         - label: "Concurrency"
         - label: "Macros & Advanced Topics"
 
-  - type: checkboxes
+  - type: markdown
     attributes:
-      label: "🌿 SwiftUI Pathway"
-      description: "Declarative UI design and layout fundamentals."
+      value: |
+        ---
+        ## 🌿 SwiftUI Pathway
+        *Declarative UI design and layout fundamentals.*
+
+  - type: checkboxes
+    id: swiftui-pathway
+    attributes:
+      label: "SwiftUI Pathway Modules"
       options:
         - label: "Getting Started with SwiftUI"
         - label: "Views and Modifiers"
@@ -55,10 +67,17 @@ body:
         - label: "Data Persistence with SwiftData"
         - label: "Testing and Debugging SwiftUI Apps"
 
-  - type: checkboxes
+  - type: markdown
     attributes:
-      label: "🧩 Develop in Swift Tutorials"
-      description: "Full project-based tutorials for Apple platforms."
+      value: |
+        ---
+        ## 🧩 Develop in Swift Tutorials
+        *Full project-based tutorials for Apple platforms.*
+
+  - type: checkboxes
+    id: develop-in-swift
+    attributes:
+      label: "Develop in Swift Tutorials"
       options:
         - label: "Meet Xcode"
         - label: "App Design"
@@ -68,12 +87,14 @@ body:
         - label: "App Distribution"
 
   - type: textarea
+    id: notes
     attributes:
-      label: "Notes & Learnings"
+      label: "🗒️ Notes & Learnings"
       description: "Record insights, code snippets, or reflections here."
+      placeholder: "Summarize your progress or challenges..."
+      render: bash
 
   - type: markdown
     attributes:
       value: |
-        ---
         ✅ **Tip:** Each section links to your project board automatically — mark completed tutorials and add notes as you go.
