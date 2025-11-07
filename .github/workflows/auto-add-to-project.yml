@@ -1,0 +1,17 @@
+name: Auto-Add Issues to Project Board
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      projects: write
+    steps:
+      - name: Add issue to project
+        uses: actions/add-to-project@v1.0.1
+        with:
+          project-url: https://github.com/users/codemedic1424/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
