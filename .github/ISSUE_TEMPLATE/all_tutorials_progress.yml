@@ -18,7 +18,6 @@ body:
         - "🧪 Labs (Develop in Swift Fundamentals)"
         - "🏗️ Daily Motivation (Custom App)"
         - "📚 General / Review"
-      project_field: "Pathway"
     validations:
       required: true
 
