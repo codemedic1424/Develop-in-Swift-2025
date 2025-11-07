@@ -1,0 +1,34 @@
+name: "🧭 Pathway Review Summary"
+description: "Summarize your learning at the end of a pathway (Swift, SwiftUI, or Develop in Swift)"
+title: "Pathway Review – [Pathway Name]"
+labels: ["pathway-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🧭 Pathway Review Summary
+
+        Reflect on what you’ve learned and document your insights at the end of a pathway.
+
+  - type: dropdown
+    id: pathway
+    attributes:
+      label: "Which pathway is this review for?"
+      options:
+        - Swift Language Pathway
+        - SwiftUI Pathway
+        - Develop in Swift Tutorials
+
+  - type: textarea
+    id: highlights
+    attributes:
+      label: "Highlights"
+      description: "List your favorite lessons, new skills, or challenges you overcame."
+      placeholder: "Example: Learned @State, @Binding, SwiftData persistence, etc."
+
+  - type: textarea
+    id: next_steps
+    attributes:
+      label: "Next Steps"
+      description: "What do you plan to learn or build next?"
+      placeholder: "Example: Start Module 2, prototype habit tracker app, etc."
