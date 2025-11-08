@@ -16,7 +16,7 @@
 | Concept | Description | Related Swift Feature |
 |----------|--------------|----------------------|
 | structures | organizes related code are packaged together| `struct` |
-| | | |
+| views | Text, Image, Stacks - help organize UI | `Image(_:), Text(_:)` |
 | | | |
 
 💡 *Tip:* Use this section to summarize new SwiftUI keywords (`@State`, `@Binding`, `NavigationStack`, etc.) and how they connect to your Swift fundamentals.
