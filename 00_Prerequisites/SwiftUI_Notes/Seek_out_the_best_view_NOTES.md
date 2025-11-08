@@ -17,21 +17,23 @@
 |----------|--------------|----------------------|
 | structures | organizes related code are packaged together| `struct` |
 | views | Text, Image, Stacks - help organize UI | `Image(_:), Text(_:)` |
-| | | |
+| modifiers | modifiers alter the view as desired using dot sytax | `.foregroundColor(_:)`|
 
 💡 *Tip:* Use this section to summarize new SwiftUI keywords (`@State`, `@Binding`, `NavigationStack`, etc.) and how they connect to your Swift fundamentals.
 
 ---
 
 ### 🧰 Tutorials / Videos
-- [⏳] Tutorial 1 – Customize views with properties  
-- [➡️] Tutorial 2 – *Name*  
+- [✅] Tutorial 1 – Customize views with properties  
+- [➡️] Tutorial 2 – About Me  
 - [ ] Related Video: [Title](#)  
 - [ ] Documentation Link: [developer.apple.com/...](#)
 
 📝 *Notes:*  
 ```
-Write brief takeaways or commands here (e.g. `.frame(maxWidth: .infinity)`, `.padding()`, etc.)
+To declare a property, use the let keyword. A property has a name, followed by a colon and then the kind of data it holds. This property’s name is day, and it holds a String.
+Note
+In Swift, kinds of data are called types. You can read the code you added to the DayForecast structure like this: “day is a property whose type is String.” Or you could say, “day is a property of type String.”
 ```
 
 ---
