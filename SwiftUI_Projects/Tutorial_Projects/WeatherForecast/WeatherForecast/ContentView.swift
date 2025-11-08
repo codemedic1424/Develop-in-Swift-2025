@@ -31,17 +31,17 @@ struct ContentView: View {
         Text("Weekly Weather Forecast")
             .font(.title)
         VStack {
-            HStack {
+            HStack(spacing: 50) {
                 DayForecast(day: "Mon", low: 50, high: 70, isRaining: false)
                 
                 DayForecast(day: "Tues", low: 40, high: 60, isRaining: true)
             }
-            HStack {
+            HStack(spacing: 50) {
                 DayForecast(day: "Wed", low: 46, high: 72, isRaining: false)
                 
                 DayForecast(day: "Thurs", low: 56, high: 76, isRaining: false)
             }
-            HStack {
+            HStack(spacing: 50) {
                 DayForecast(day: "Fri", low: 54, high: 80, isRaining: false)
                 
                 DayForecast(day: "Sat", low: 42, high: 64, isRaining: true)
@@ -50,7 +50,7 @@ struct ContentView: View {
                 DayForecast(day: "Sun", low: 40, high: 62, isRaining: true)
             }
         }
-        
+        .padding()
     }
 }
 struct DayForecast: View {
@@ -60,6 +60,20 @@ struct DayForecast: View {
     let low: Int
     let high: Int
     let isRaining: Bool
+    
+    /// A computed Boolean property that dynamically determines whether the forecast day
+    /// matches the current day of the week.
+    var isToday: Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
+        let today = formatter.string(from: Date())
+        return day == today
+    }
+    
+    /// A computed Boolean property that dynamically determines if the temperature is greater than or equal to 75 degrees.
+    var isHighTemp: Bool {
+        high >= 75
+    }
     
     var iconName: String {
         if isRaining {
@@ -78,7 +92,7 @@ struct DayForecast: View {
     }
     
 // MARK: View Layout
-    //TODO: adjust spacing and add background tinting
+    
     var body: some View {
         VStack {
             Text(day)
@@ -89,10 +103,17 @@ struct DayForecast: View {
                 .padding(.bottom, 5)
             Text("High \(high)º")
                 .fontWeight(.semibold)
+            //changes font color if temp high is met
+                .foregroundStyle(isHighTemp ? .red : .primary)
             Text("Low: \(low)º")
                 .foregroundStyle(.secondary)
         }
-        .padding()
+        .padding(25)
+        //dynamic background - changes to highlight today
+        .background(
+            isToday ? Color.teal.opacity(0.2) : Color.gray.opacity(0.1),
+            in: RoundedRectangle(cornerRadius: 12)
+        )
     }
 }
 #Preview {
