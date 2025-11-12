@@ -1,94 +1,80 @@
-// 🧮 Computed Properties – Swift Playground Template
-// Created for practice with Sections 1 & 2 of your Computed Properties exercises.
-// You can open this file in Xcode or in the Swift Playgrounds app on macOS or iPad.
+// 🧮 Computed Properties – Practice Template
+// Use this file to complete the exercises from your “Computed Properties” practice guide.
+// You can open this in Xcode or the Swift Playgrounds app (macOS or iPad).
 
 import Foundation
+import PlaygroundSupport
 
-// MARK: - Example 1: Basic Computed Property
+// ==========================================================
+// MARK: - Section 1 – Basics of Computed Properties
+// ==========================================================
+
+// Exercise 1 – Full Name
+// Create a Person struct with firstName and lastName.
 struct Person {
     var firstName: String
     var lastName: String
-    
-    // Computed property combining first and last name
-    var fullName: String {
-        return "\(firstName) \(lastName)"
+    // Add a computed property fullName -> "<firstName> <lastName>"
+    var fullName {
+        return "Hello! My name is \(firstName) \(lastName)"
     }
 }
+let me = Person(firstName: "Christopher", lastName: "Wilshusen")
+print(me)
 
-// Test it
-var person = Person(firstName: "Chris", lastName: "Wilshusen")
-print("Full name:", person.fullName)
 
-// MARK: - Example 2: Rectangle Area
-struct Rectangle {
-    var width: Double
-    var height: Double
-    
-    var area: Double {
-        width * height
-    }
-}
+// Exercise 2 – Rectangle Area
+// Create a Rectangle struct with width and height (Double).
+// Add computed property area -> width * height.
 
-let rect = Rectangle(width: 10, height: 5)
-print("Area:", rect.area)
+// Exercise 3 – Even or Odd
+// Create a NumberInfo struct with value: Int.
+// Add computed property isEven -> Bool and parityDescription -> "Even"/"Odd".
 
-// MARK: - Example 3: Even or Odd
-struct NumberInfo {
-    var value: Int
-    
-    var isEven: Bool {
-        value % 2 == 0
-    }
-    
-    var parityDescription: String {
-        isEven ? "Even" : "Odd"
-    }
-}
+// ==========================================================
+// MARK: - Section 2 – Read-Only vs Read–Write Computed Properties
+// ==========================================================
 
-var num = NumberInfo(value: 7)
-print("Value:", num.value, "| Parity:", num.parityDescription)
+// Exercise 4 – Temperature in Celsius/Fahrenheit
+// Add computed property fahrenheit with get/set logic for conversion.
 
-num.value = 10
-print("Value:", num.value, "| Parity:", num.parityDescription)
+// Exercise 5 – Clamped Score
+// Use private _value and a computed value property that clamps between 0–100.
 
-// MARK: - Example 4: Read/Write Computed Property (Temperature)
-struct Temperature {
-    var celsius: Double
-    
-    var fahrenheit: Double {
-        get {
-            (celsius * 9 / 5) + 32
-        }
-        set {
-            celsius = (newValue - 32) * 5 / 9
-        }
-    }
-}
+// ==========================================================
+// MARK: - Section 3 – Weather / Forecast Themed
+// ==========================================================
 
-var temp = Temperature(celsius: 0)
-print("Celsius:", temp.celsius, "| Fahrenheit:", temp.fahrenheit)
+// Exercise 6 – Temperature Range String ("low–highº")
+// Exercise 7 – Weather Summary Text ("Rainy"/"Sunny")
+// Exercise 8 – High Temperature Category ("Cold"/"Mild"/"Hot")
 
-temp.fahrenheit = 212
-print("Celsius after update:", temp.celsius)
+// ==========================================================
+// MARK: - Section 4 – Computed Properties in SwiftUI Views
+// ==========================================================
 
-// MARK: - Example 5: Clamped Score
-struct Score {
-    private var _value: Int = 0
-    
-    var value: Int {
-        get { _value }
-        set {
-            _value = min(max(newValue, 0), 100)
-        }
-    }
-}
+// Exercise 9 – Button Title Based on State
+// @State var isPlaying: Bool
+// Computed property buttonTitle -> "Play"/"Pause"
 
-var score = Score()
-score.value = 120
-print("Clamped high:", score.value)
-score.value = -10
-print("Clamped low:", score.value)
-score.value = 85
-print("Within range:", score.value)
+// Exercise 10 – Dynamic Icon Name
+// Computed property favoriteIconName -> "star" or "star.fill"
 
-// ✅ You can now continue adding your own structs for Exercises 6–11 in this same file.
+// Exercise 11 – Card Background Color
+// Computed property cardBackground -> green or gray opacity
+
+// ==========================================================
+// MARK: - Section 5 – Challenge Exercises
+// ==========================================================
+
+// Challenge 1 – Step Counter (Goal progress)
+// Challenge 2 – Grading System (Letter + Passing Bool)
+// Challenge 3 – Daily Motivation Card (Styled quote card)
+
+// ==========================================================
+// ✅ Notes
+// ==========================================================
+// You can run this file directly in Xcode’s playground console.
+// Add print() statements after each struct to verify computed outputs.
+// Use get/set syntax where needed for read–write properties.
+// For SwiftUI parts, copy relevant structs into an Xcode project later.
