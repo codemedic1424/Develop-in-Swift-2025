@@ -9,33 +9,34 @@ import SwiftUI
 
 struct ContentView: View {
     @State var habits = [
-        Habit(name: "Reading", category: "Liesure"),
+        Habit(name: "Reading", category: "Leisure"),
         Habit(name: "Walking", category: "Fitness"),
         Habit(name: "Gym", category: "Fitness"),
         Habit(name: "Laundry", category: "Chore"),
-        Habit(name: "TV", category: "Liesure")
+        Habit(name: "TV", category: "Leisure")
     ]
     
     var body: some View {
        
         NavigationStack {
-            List($habits) { $habit in
-                //ForEach(habit)
-                HStack {
-                    Text(habit.categoryEmoji)
-                    Text(habit.name)
-                    Spacer()
-                    VStack{
-                        Text("Streak Count")
-                        Text(String(habit.streak))
-                    }
-                    
-                    VStack {
-                        Toggle(isOn: $habit.isComplete) {
-                            Text("Complete")
+            List {
+                ForEach(habits.indices, id: \.self) { index in
+                    HStack {
+                        Text(habits[index].categoryEmoji)
+                        Text(habits[index].name)
+                        Spacer()
+                        
+                        VStack {
+                            Text("Streak Count:")
+                            Text(String(habits[index].streak))
                         }
-                        .onChange(of: habit.isComplete) { _ in
-                            habit.ToggleComplete()
+                        Spacer()
+                        VStack {
+                            Button {
+                                habits[index].toggleComplete()
+                            } label: {
+                                Text(habits[index].isComplete ? "Completed" : "Mark Complete")
+                            }
                         }
                     }
                 }

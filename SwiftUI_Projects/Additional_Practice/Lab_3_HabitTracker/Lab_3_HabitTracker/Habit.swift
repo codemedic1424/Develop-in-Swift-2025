@@ -17,14 +17,18 @@ struct Habit: Identifiable {
     
     var categoryEmoji: String {
         switch category {
-        case "Liesure": "🧠";
-        case "Fitness": "💪";
-        case "Chore": "🧹";
-        default: "❓"
+        case "Leisure":
+            return "🧠"
+        case "Fitness":
+            return "💪"
+        case "Chore":
+            return "🧹"
+        default: 
+            return "❓"
         }
     }
     
-    mutating func ToggleComplete() {
+    mutating func toggleComplete() {
         isComplete.toggle()
         if isComplete {
             streak += 1
