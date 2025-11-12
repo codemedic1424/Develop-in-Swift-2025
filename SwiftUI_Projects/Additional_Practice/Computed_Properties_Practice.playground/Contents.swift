@@ -130,8 +130,74 @@ print(score.value)  // prints 100, not 150
 // ==========================================================
 
 // Exercise 6 – Temperature Range String ("low–highº")
+struct WeatherTemperature {
+    var low: Int
+    var high: Int
+    
+    var report: String{
+        get {
+            return "The temperature today ranges from \(low)º to \(high)º"
+        }
+    }
+    var tempCondition: String {
+        switch high {
+        case ..<60:
+            return "Cold"
+        case 60...84:
+            return "Mild"
+        case 85...:
+            return "Hot"
+        default:
+            return "Unknown"
+        }
+    }
+}
+
+let mondayWeather = WeatherTemperature(low: 46, high: 78)
+print(mondayWeather.high)
+print(mondayWeather.low)
+print(mondayWeather.report)
+
 // Exercise 7 – Weather Summary Text ("Rainy"/"Sunny")
+struct WeatherSummary {
+    private var _condition: String = ""
+    
+    var condition: String {
+        get { _condition }
+        set {
+            _condition = newValue.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+    }
+    var summary: String {
+        switch condition {
+        case "clear", "sunny":
+            return "Sunny"
+        case "rain", "rainy", "showers", "drizzle", "storm":
+            return "Rainy"
+        case "cloudy", "overcast", "fog":
+            return "Cloudy"
+        default:
+            return "Could be sunny, could be cloudy. Go check."
+        }
+    }
+}
+
+let monday = WeatherSummary()
+print(monday.summary)
+var tuesday = WeatherSummary()
+tuesday.condition = "rain"
+print(tuesday.summary)
+print(tuesday.condition)
+//trimming test
+var today = WeatherSummary()
+today.condition = "        rAIN     "
+print(today.condition)
+print(today.summary)
+
 // Exercise 8 – High Temperature Category ("Cold"/"Mild"/"Hot")
+
+print(mondayWeather.tempCondition)
+print("The weather today is \(mondayWeather.tempCondition.lowercased()).")
 
 // ==========================================================
 // MARK: - Section 4 – Computed Properties in SwiftUI Views
