@@ -17,22 +17,20 @@ struct WelcomePage: View {
                 
                 Image(systemName: "figure.2.and.child.holdinghands")
             }
+            .font(.system(size: 70))
+            .foregroundStyle(.white)
             
             Text("Welcome to My App")
                 .font(.title)
                 .fontWeight(.semibold)
                 .fontDesign(.monospaced)
                 .padding(.top)
-                .border(.black, width: 1.5)
             
             Text("I hope you like it. This was my first build with Swift and SwiftUI.")
                 .font(.title2)
                 .multilineTextAlignment(.center)
-                .border(.black, width: 1.5)
         }
-        .border(.orange, width: 2)
         .padding()
-        .border(.blue, width: 1)
     }
 }
 
