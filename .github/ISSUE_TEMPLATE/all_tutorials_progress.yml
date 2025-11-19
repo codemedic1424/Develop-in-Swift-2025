@@ -81,12 +81,14 @@ body:
     attributes:
       label: "Develop in Swift Tutorials"
       options:
-        - label: "Meet Xcode"
+        - label: "Getting Started"
         - label: "App Design"
+        - label: "SwiftUI"
+        - label: "Data Modeling"
         - label: "App Development"
         - label: "Machine Learning"
-        - label: "Spatial Computing (visionOS)"
-        - label: "App Distribution"
+        - label: "Spatial Computing"
+        - label: "App distribution"
 
   - type: textarea
     id: notes
