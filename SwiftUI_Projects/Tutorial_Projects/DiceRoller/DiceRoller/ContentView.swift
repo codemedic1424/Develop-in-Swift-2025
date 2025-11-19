@@ -18,11 +18,16 @@ struct ContentView: View {
             
             HStack {
                 ForEach(1...numberOfDice, id: \.description) { _ in
-                    DiceView()
-                }
+                                   DiceView()
+                               }
             }
             
             HStack{
+                Text("Number of Dice:")
+                    .foregroundStyle(.white)
+                    .font(.headline.lowercaseSmallCaps())
+                    .padding(.trailing, 20)
+
                 Button("Remove Dice", systemImage: "minus.circle.fill") {
                     withAnimation {
                         numberOfDice -= 1
@@ -40,6 +45,11 @@ struct ContentView: View {
             .padding()
             .labelStyle(.iconOnly)
             .font(.title)
+            
+            //TODO: Add Reset Button Functionality
+            Button("Reset") {
+                //numberOfPips = 1
+            }
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -51,3 +61,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
