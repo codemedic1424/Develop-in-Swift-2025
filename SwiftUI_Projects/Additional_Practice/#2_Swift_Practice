@@ -1,0 +1,176 @@
+# Swift Practice Exercises  
+### Bindings • Computed Properties • Structs  
+### Includes a Mini-Project: Score Tracker
+
+This file can be imported directly into Xcode, GitHub, or Atlas.
+
+---
+
+## 🧩 PART 1 — Binding Exercises
+
+### **Exercise B1 — Editable Username**
+Create a view with:
+- `@State private var username = ""`
+- A `TextField` bound to `$username`
+- A `Text` label that updates live as you type  
+- Bonus: Create a child view that edits the username through a `Binding<String>`.
+
+---
+
+### **Exercise B2 — Online/Offline Toggle**
+Create:
+- `@State private var isOnline = false`
+- A toggle bound to `$isOnline`
+- A label showing `"Online"` or `"Offline"`  
+- Bonus: Move the toggle into a child view using a binding.
+
+---
+
+### **Exercise B3 — Shared Slider and Stepper**
+Create:
+- `@State private var volume = 50`
+- A slider and a stepper bound to the same value  
+- A label showing the value
+
+---
+
+## 🧮 PART 2 — Computed Property Exercises
+
+### **Exercise C1 — Temperature Range**
+Create a struct:
+```swift
+struct DayTemperature {
+    var low: Int
+    var high: Int
+    var range: String { "\(low)–\(high)º" }
+}
+```
+
+Display `range` inside a Text view.
+
+---
+
+### **Exercise C2 — Progress Model**
+```swift
+struct ProgressInfo {
+    var completed: Int
+    var total: Int
+    var fraction: Double { Double(completed) / Double(total) }
+    var label: String { "\(completed) of \(total)" }
+}
+```
+
+Render these in a SwiftUI view.
+
+---
+
+### **Exercise C3 — Category Property**
+```swift
+struct Score {
+    var value: Int
+    var category: String {
+        switch value {
+        case ..<50: "Low"
+        case 50..<75: "Medium"
+        default: "High"
+        }
+    }
+}
+```
+
+Use this to change the displayed text color.
+
+---
+
+## 🧱 PART 3 — Struct Modeling Exercises
+
+### **Exercise S1 — Player Model**
+```swift
+struct Player {
+    var name: String
+    var score: Int
+}
+```
+Store players in a `@State` array and list them.
+
+---
+
+### **Exercise S2 — Task Model**
+```swift
+struct Task {
+    var title: String
+    var isCompleted: Bool
+}
+```
+Display tasks in a list with toggles bound to each task.
+
+---
+
+### **Exercise S3 — Card Model**
+```swift
+struct Card {
+    var title: String
+    var detail: String
+    var isFavorite: Bool
+}
+```
+Render the cards in a styled VStack.
+
+---
+
+# 🚀 PART 4 — Combined Mini-Project  
+## **Score Tracker App**
+
+### **Phase 1 — Editable Player List**
+Create:
+```swift
+struct Player: Identifiable {
+    let id = UUID()
+    var name: String
+    var score: Int
+}
+```
+
+Store `[Player]` in `@State` and display:
+- Editable name field (`TextField`)  
+- Score adjustment controls (`Button` or `Stepper`)
+
+---
+
+### **Phase 2 — Computed Properties in the Model**
+Add:
+```swift
+var isHighScore: Bool { score >= 50 }
+var status: String { isHighScore ? "Leading" : "Behind" }
+```
+
+Use these to:
+- Color code the score  
+- Display the player status  
+
+---
+
+### **Phase 3 — Overall Game Summary**
+Add computed properties in the view:
+- Total score across all players  
+- Highest score  
+- Current leader  
+
+Display these in a summary section.
+
+---
+
+### **Phase 4 — Stretch Enhancements**
+- Add a “New Player” button  
+- Add “Reset All Scores”  
+- Add a toggle to show/hide players below a threshold  
+
+---
+
+## ✅ You're all set!
+You can now import this file into:
+- Xcode  
+- GitHub  
+- Atlas  
+
+Happy coding! 🚀
