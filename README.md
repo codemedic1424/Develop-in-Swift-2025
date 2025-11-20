@@ -1,53 +1,116 @@
-# 🚀 Develop in Swift 2025 — Learning Pathway  
+# 🚀 Develop in Swift — 2025 Learning Pathway  
 
-Welcome to my structured study journey through Apple’s updated **Develop in Swift Tutorials (2025)**.  
-This repository follows the official Apple pathway order — **Swift → SwiftUI → Develop in Swift**, aligned with Xcode 16 and Swift 6.
+Welcome to my learning workspace for Apple’s **2025 Swift curriculum**, fully aligned with the official Apple pathways:
 
----
+- **Swift Pathway** — Learn the Swift language  
+- **SwiftUI Pathway** — Build interfaces with SwiftUI  
+- **Develop in Swift Tutorials** — Hands‑on Xcode projects  
 
-## 🧩 Prerequisite Modules — Recommended Order
-| # | Pathway | Description | Link |
-|---|----------|--------------|------|
-| 1️⃣ | 🦅 **Swift Language Pathway** | Core Swift syntax and logic fundamentals. | [developer.apple.com/swift/get-started](https://developer.apple.com/swift/get-started) |
-| 2️⃣ | 🌿 **SwiftUI Pathway** | Build declarative user interfaces. | [developer.apple.com/pathways/swiftui](https://developer.apple.com/pathways/swiftui) |
-| 3️⃣ | 🧭 **Develop in Swift Tutorials** | Full project-based curriculum. | [developer.apple.com/tutorials/develop-in-swift](https://developer.apple.com/tutorials/develop-in-swift) |
+This repository mirrors Apple’s pathway‑based structure and is organized for clarity, long‑term growth, and professional development.
 
 ---
 
-## 📘 Module Progress Tracker
+## 🛣️ Official Apple Learning Pathways  
 
-| Module | Title | Status | Notes |
-|---------|--------|--------|-------|
-| 0 | Meet Xcode | ✅ Complete | Installing Xcode 16 and setting up project. |
-| 1 | App Design | ⏳ In Progress | Turn your ideas into an intuituve iOS app design.  |
-| 2 | SwiftUI | ☐ Not Started |  |
-| 3 | Data Modeling | ☐ Not Started |  |
-| 4 | App Development | ☐ Not Started |  |
-| 5 | Machine Learning | ☐ Not Started |  |
-| 6 | App Distribution | ☐ Not Started |  |
+### 🦅 Swift Language Pathway  
+Foundational Swift programming concepts, including:  
+- Variables and constants  
+- Functions  
+- Control flow  
+- Structs, enums, and protocols  
+- Optionals  
+- Generics  
+🔗 https://developer.apple.com/swift/get-started/
 
 ---
 
-## 🍎 Apple Developer Resources
-Quick links for reference during the pathway.
+### 🌿 SwiftUI Pathway  
+Build modern, declarative interfaces using SwiftUI.  
+Topics include:  
+- Views and modifiers  
+- Layout  
+- Navigation  
+- State and bindings  
+- Working with data in SwiftUI  
+🔗 https://developer.apple.com/pathways/swiftui/
+
+---
+
+### 🧭 Develop in Swift Tutorials  
+Apple’s hands‑on, project‑based curriculum teaching:  
+- App architecture  
+- Data modeling  
+- Navigation and multi‑view design  
+- App state and data flow  
+- Full app prototypes  
+🔗 https://developer.apple.com/tutorials/develop-in-swift/
+
+---
+
+## 🗂 Repository Structure  
+
+This repository is organized to match Apple’s 2025 curriculum:
+
+```
+Curriculum/
+   Swift_Pathway/
+   SwiftUI_Pathway/
+   Develop_in_Swift_Tutorials/
+
+Notes/
+   Swift/
+   SwiftUI/
+   DIS/
+
+Practice/
+   Bindings/
+   Structs/
+   ComputedProperties/
+   MiniProjects/
+
+Projects/
+   ScoreKeeper/
+   WeatherForecast/
+   MeetXcode/
+   ChatPrototype/
+   DiceRoller/
+   OnboardingFlow/
+   Pick-a-Pal/
+
+Roadmaps/
+Resources/
+```
+
+---
+
+## 📘 Study Roadmap  
+My complete learning roadmap—covering Swift, SwiftUI, and the DIS Tutorials—lives here:
+
+📄 `Roadmaps/Swift_Learning_Roadmap.md`  
+📄 `Roadmaps/Repo_Structure.md`  
+
+This roadmap reflects Apple’s recommended learning order and has been adapted for Swift 6 and Xcode 16.
+
+---
+
+## 🍎 Apple Developer Resources  
 
 | Category | Link |
-|-----------|------|
-| 🧠 Swift | [developer.apple.com/swift/get-started](https://developer.apple.com/swift/get-started) |
-| 🌿 SwiftUI | [developer.apple.com/pathways/swiftui](https://developer.apple.com/pathways/swiftui) |
-| 💻 Xcode | [Mac App Store – Xcode](https://apps.apple.com/us/app/xcode/id497799835) |
-| 🧩 SwiftData | [Meet SwiftData – WWDC 23](https://developer.apple.com/videos/play/wwdc2023/10187/) |
-| 🧪 Swift Testing | [Go Further with Swift Testing – WWDC 24](https://developer.apple.com/videos/play/wwdc2024/10195/) |
-| 🚀 TestFlight | [developer.apple.com/testflight](https://developer.apple.com/testflight) |
-| 🧱 App Distribution | [App Distribution Tutorials](https://developer.apple.com/tutorials/develop-in-swift/welcome-to-app-distribution) |
-| 📚 Docs Hub | [Apple Developer Documentation](https://developer.apple.com/documentation/) |
+|---------|------|
+| Swift | https://developer.apple.com/swift/get-started/ |
+| SwiftUI | https://developer.apple.com/pathways/swiftui |
+| Xcode | https://developer.apple.com/xcode/ |
+| SwiftData | https://developer.apple.com/videos/play/wwdc2023/10187/ |
+| Swift Testing | https://developer.apple.com/videos/play/wwdc2024/10195/ |
+| App Distribution | https://developer.apple.com/tutorials/develop-in-swift/welcome-to-app-distribution |
+| Documentation | https://developer.apple.com/documentation/ |
 
 ---
 
-### 🧾 Swift 6 Compatibility Note  
-All tutorials and examples in this repository are aligned with **Swift 6 syntax** and **Xcode 16 SDKs (2025)**.  
+### 🧾 Swift 6 Compatibility  
+All examples and exercises in this repository follow **Swift 6** and **Xcode 16 (2025)** standards.
 
 ---
 
 *Created by Christopher Wilshusen*  
-📍 Hilton Head Island | QA & EMD Supervisor | Swift Developer in Training  
+Hilton Head Island | QA & EMD Supervisor | iOS Developer in Training
