@@ -1,69 +1,119 @@
-# 🧭 Develop in Swift 2025 — Project Tracker
-
-This file links each pathway and tutorial milestone to your GitHub Projects board:  
-➡️ [View Project Board → Develop in Swift 2025 Progress](https://github.com/users/codemedic1424/projects/5)
-
----
-
-## 🎯 **Board Columns**
-| Column | Description |
-|---------|--------------|
-| 🟡 **To Do** | Tasks, modules, or tutorials not yet started. |
-| 🟠 **In Progress** | Lessons, code samples, or sections currently being worked on. |
-| 🟢 **Completed** | Finished modules, tested code, or uploaded summaries. |
-| ⚪ **Archived / Notes** | Reference items, legacy notes, or older code you want to keep. |
+# 🧭 Develop in Swift 2025 — Project & Pathway Tracker  
+This tracker aligns your progress with Apple’s **2025 Swift Curriculum**, including the Swift Pathway, SwiftUI Pathway, and Develop in Swift Tutorials.  
+GitHub Project Board → https://github.com/users/codemedic1424/projects/5
 
 ---
 
-## 🧩 **Milestones & Linked Modules**
+# 📚 1. Swift Pathway (Language Foundations)
+Located in: `Curriculum/Swift_Pathway`
 
-### **Phase 1 — Prerequisites**
-| Task | Pathway | Status | Link |
-|------|----------|--------|------|
-| 🦅 Learn Swift fundamentals | Swift Language Pathway | ✅ Completed | [Get Started with Swift](https://developer.apple.com/swift/get-started/) |
-| 🌿 Explore SwiftUI concepts | SwiftUI Pathway | ☐ Not Started | [SwiftUI Pathway](https://developer.apple.com/pathways/swiftui/) |
-| 📘 Review recommended order doc | Overview Recommended Order.md | ✅ Complete | ./00_Prerequisites/Overview_Recommended_Order.md |
-
----
-
-### **Phase 2 — Develop in Swift Tutorials**
-| Module | Title | Status | Folder |
-|---------|--------|--------|--------|
-| 0 | Meet Xcode | ✅ Completed | ./01_Develop_in_Swift/Module_0_Meet_Xcode |
-| 1 | App Design | ⏳ In Progress | ./01_Develop_in_Swift/Module_1_App_Design |
-| 2 | SwiftUI | ☐ Not Started | ./01_Develop_in_Swift/Module_2_SwiftUI |
-| 3 | Data Modeling | ☐ Not Started | ./01_Develop_in_Swift/Module_3_Data_Modeling |
-| 4 | App Development | ☐ Not Started | ./01_Develop_in_Swift/Module_4_App_Development |
-| 5 | Machine Learning | ☐ Not Started | ./01_Develop_in_Swift/Module_5_Machine_Learning |
-| 6 | App Distribution | ☐ Not Started | ./01_Develop_in_Swift/Module_6_App_Distribution |
+| Topic | Status | Notes |
+|-------|--------|--------|
+| A Swift Tour | ☐ Not Started | |
+| The Basics (variables, constants) | ☐ Not Started | |
+| Strings & Collections | ☐ Not Started | |
+| Control Flow | ☐ Not Started | |
+| Functions & Closures | ☐ Not Started | |
+| Structs, Enums, Classes | ☐ Not Started | |
+| Optionals | ☐ Not Started | |
+| Protocols | ☐ Not Started | |
+| Generics | ☐ Not Started | |
+| Concurrency Basics | ☐ Not Started | |
+| Swift 6 Updates | ☐ Not Started | |
 
 ---
 
-### **Phase 3 — Extended Learning**
-| Task | Resource | Status |
-|------|-----------|--------|
-| 🧪 Practice Swift Testing | WWDC 2024 Session 10195 | ☐ Not Started |
-| 🧩 Explore SwiftData | WWDC 2023 Session 10187 | ☐ Not Started |
-| 🧱 Review App Distribution | Develop in Swift Module 6 | ☐ Not Started |
+# 🌿 2. SwiftUI Pathway (Interface Foundations)
+Located in: `Curriculum/SwiftUI_Pathway`
+
+| Topic | Status | Notes |
+|-------|--------|--------|
+| Meet SwiftUI | ☐ Not Started | |
+| Views & Modifiers | ☐ Not Started | |
+| Stacks & Layout | ☐ Not Started | |
+| State & Bindings | ☐ Not Started | |
+| Lists & Navigation | ☐ Not Started | |
+| Working With Data | ☐ Not Started | |
+| SwiftUI Essentials Video Series | ☐ Not Started | |
+| SwiftUI Cookbook (Navigation) | ☐ Not Started | |
+| Design Pathway (optional) | ☐ Not Started | |
 
 ---
 
-## 🗃️ **Usage Notes**
-- Create a **GitHub Issue** or **Project Card** for each module or task above.  
-- Use the same naming scheme for cards (e.g., `M0 – Meet Xcode`, `P1 – SwiftUI Pathway`).  
-- Link Markdown notes, screenshots, or code examples directly in the card comments.  
-- Use emojis for quick scanning ✅ 🧩 🧠 🌿.
+# 🧩 3. Develop in Swift Tutorials (Hands‑On Projects)
+Located in: `Curriculum/Develop_in_Swift_Tutorials`  
+Projects live in the `Projects/` folder.
+
+| Project | Folder | Status |
+|---------|---------|--------|
+| Meet Xcode | `Projects/MeetXcode` | ✅ Completed |
+| Story App | `Projects/StoryApp` | ☐ Not Started |
+| Weather App | `Projects/WeatherForecast` | ⏳ In Progress |
+| ScoreKeeper | `Projects/ScoreKeeper` | ⏳ In Progress |
+| Pick‑a‑Pal | `Projects/Pick-a-Pal` | ☐ Not Started |
+| Onboarding Flow | `Projects/OnboardingFlow` | ☐ Not Started |
+| Chat Prototype | `Projects/ChatPrototype` | ☐ Not Started |
+| Dice Roller | `Projects/DiceRoller` | ☐ Not Started |
 
 ---
 
-### 🧾 **Commit Tagging Convention**
-| Prefix | Meaning | Example |
-|---------|----------|----------|
-| `[SWIFT]` | Core language work | `[SWIFT] Completed control flow exercises` |
-| `[UI]` | SwiftUI layout or binding work | `[UI] Created list view and @State bindings` |
-| `[DATA]` | SwiftData or model updates | `[DATA] Added persistence to Habit model` |
-| `[DOC]` | Notes, markdown updates | `[DOC] Added Module 0 lesson summary` |
+# 🔬 4. Practice Labs (Concept‑Focused)
+Located in: `Practice/`
+
+## 🔹 Structs
+| Exercise | Status |
+|----------|---------|
+| Lab 1 – Swift Structs | ☐ Not Started |
+
+## 🔹 Bindings
+| Exercise | Status |
+|----------|---------|
+| Lab 2 – Bindings | ☐ Not Started |
+
+## 🔹 Combined Structs + Bindings
+| Exercise | Status |
+|----------|---------|
+| Lab 3 – Habit Tracker | ☐ Not Started |
+
+## 🔹 Computed Properties
+| Exercise | Status |
+|----------|---------|
+| Lab 4 – Meal Planner | ☐ Not Started |
+| Lab 5 – Struct Computed Properties | ☐ Not Started |
+| Lab 6 – SwiftUI Computed Properties | ☐ Not Started |
+| Lab 7 – Practical Models | ☐ Not Started |
 
 ---
 
-*This file keeps your local progress aligned with the GitHub Project board and makes it easy to track across devices (MacBook Air, iPad, etc.).*  
+# 🗺 5. Roadmaps & Study Plans
+Located in: `Roadmaps/`
+
+| File | Purpose |
+|-------|----------|
+| Swift_Learning_Roadmap.md | Main study roadmap |
+| Repo_Structure.md | Repo/Folder layout |
+
+---
+
+# 🧾 6. Commit Tagging Convention  
+Use prefixes to keep commit history organized:
+
+| Tag | Purpose |
+|------|----------|
+| `[SWIFT]` | Swift language work |
+| `[UI]` | SwiftUI interface/layout |
+| `[DATA]` | Data models, SwiftData |
+| `[DOC]` | Notes, Markdown updates |
+| `[PROJECT]` | Work on an Xcode project |
+
+---
+
+# 🛠 7. How to Use This Tracker  
+- Create a project card for each row above.  
+- Link notes, screenshots, or code snippets inside the card.  
+- Move cards across To Do → In Progress → Completed on your GitHub Project board.  
+- Sync between your MacBook Air, GitHub, and ChatGPT Atlas easily.
+
+---
+
+*Tracker last updated using the 2025 Apple Curriculum alignment.*
