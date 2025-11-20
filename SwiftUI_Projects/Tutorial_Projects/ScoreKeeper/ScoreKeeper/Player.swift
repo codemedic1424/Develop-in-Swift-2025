@@ -12,4 +12,5 @@ struct Player: Identifiable {
     
     var name: String
     var score: Int
+    var color: Color = .black
 }
