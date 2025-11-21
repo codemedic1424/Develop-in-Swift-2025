@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct PathwayCard: View {
+    
     var title: String
     var subtitle: String
     var completed: Int
     var total: Int
     var progress: Double
+    var iconName: String
     
     var body: some View {
         ZStack {
@@ -20,11 +22,16 @@ struct PathwayCard: View {
                 .fill(.ultraThinMaterial)
                 .shadow(radius: 2)
             VStack(spacing: 10) {
-                Text(title)
-                    .font(.title2)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
+                HStack {
+                    Text(title)
+                        .font(.title2)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: iconName)
+                        .font(.title3)
+                }
+                
                 Text(subtitle)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -39,11 +46,11 @@ struct PathwayCard: View {
                     .frame(height: 20)
                     .padding()
             }
+            .padding()
         }
-        .padding()
     }
 }
 
 #Preview {
-    PathwayCard(title: "Swift Pathway", subtitle: "Foundation of Xcode", completed: 2, total: 10, progress: 0.2)
+    PathwayCard(title: "Swift Pathway", subtitle: "Foundation of Xcode", completed: 2, total: 10, progress: 0.2, iconName: "book.fill")
 }

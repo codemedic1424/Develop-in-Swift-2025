@@ -11,9 +11,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7CF803DE2ECF8E73004EE6E0 /* LearningDashbaord */ = {
+		7CF803DE2ECF8E73004EE6E0 /* LearningDashboard */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = LearningDashbaord;
+			path = LearningDashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		7CF803D32ECF8E73004EE6E0 = {
 			isa = PBXGroup;
 			children = (
-				7CF803DE2ECF8E73004EE6E0 /* LearningDashbaord */,
+				7CF803DE2ECF8E73004EE6E0 /* LearningDashboard */,
 				7CF803DD2ECF8E73004EE6E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7CF803DE2ECF8E73004EE6E0 /* LearningDashbaord */,
+				7CF803DE2ECF8E73004EE6E0 /* LearningDashboard */,
 			);
 			name = LearningDashbaord;
 			packageProductDependencies = (
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7CF803D72ECF8E73004EE6E0 /* Build configuration list for PBXProject "LearningDashbaord" */;
+			buildConfigurationList = 7CF803D72ECF8E73004EE6E0 /* Build configuration list for PBXProject "LearningDashboard" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -313,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7CF803D72ECF8E73004EE6E0 /* Build configuration list for PBXProject "LearningDashbaord" */ = {
+		7CF803D72ECF8E73004EE6E0 /* Build configuration list for PBXProject "LearningDashboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CF803E52ECF8E75004EE6E0 /* Debug */,
