@@ -11,14 +11,32 @@ import SwiftData
 struct SwiftPathwayView: View {
     @EnvironmentObject var dashboard: LearningDashboardModel
     @Environment(\.modelContext) private var context
+    @Query(filter: #Predicate<LearningItemModel> { item in
+        item.pathway == "swift"
+    }, sort: \.chapterTitle)
+    private var swiftItems: [LearningItemModel]
+
+    // MARK: - Derived progress values
+    private var completedCount: Int {
+        swiftItems.filter { $0.isComplete }.count
+    }
+
+    private var totalCount: Int {
+        swiftItems.count
+    }
+
+    private var completionPercent: Double {
+        guard totalCount > 0 else { return 0 }
+        return Double(completedCount) / Double(totalCount)
+    }
 
     var body: some View {
         List {
             // Bind directly to each LearningItem so toggles update the model
-            ForEach($dashboard.swiftPathwayItems) { $item in
+            ForEach(swiftItems) { item in
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(item.chapterTitle)
+                        Text(item.title)
                             .font(.headline)
 
                         Text(item.pathwayTitle)
@@ -66,7 +84,12 @@ struct SwiftPathwayView: View {
         .navigationTitle("Swift Pathway")
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                ProgressBarView(title: "Swift Pathway Progress", percent: dashboard.swiftCompletionPercent, completed: dashboard.swiftCompletedCount, total: dashboard.swiftTotalCount)
+                ProgressBarView(
+                    title: "Swift Pathway Progress",
+                    percent: completionPercent,
+                    completed: completedCount,
+                    total: totalCount
+                )
             }
         }
     }
