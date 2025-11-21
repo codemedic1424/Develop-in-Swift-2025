@@ -13,7 +13,7 @@ struct SwiftPathwayView: View {
     @Environment(\.modelContext) private var context
     @Query(filter: #Predicate<LearningItemModel> { item in
         item.pathway == "swift"
-    }, sort: \.chapterTitle)
+    }, sort: \.title)
     private var swiftItems: [LearningItemModel]
 
     // MARK: - Derived progress values
@@ -38,10 +38,6 @@ struct SwiftPathwayView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(item.title)
                             .font(.headline)
-
-                        Text(item.pathwayTitle)
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
                     }
 
                     Spacer()
