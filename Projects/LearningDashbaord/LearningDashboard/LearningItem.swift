@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LearningDashbaord
 
 struct LearningItem: Identifiable {
     let id = UUID()

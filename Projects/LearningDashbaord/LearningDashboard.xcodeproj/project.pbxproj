@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7CF803DC2ECF8E73004EE6E0 /* LearningDashbaord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningDashbaord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CF803DC2ECF8E73004EE6E0 /* LearningDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -40,7 +40,7 @@
 		7CF803DD2ECF8E73004EE6E0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CF803DC2ECF8E73004EE6E0 /* LearningDashbaord.app */,
+				7CF803DC2ECF8E73004EE6E0 /* LearningDashboard.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CF803DB2ECF8E73004EE6E0 /* LearningDashbaord */ = {
+		7CF803DB2ECF8E73004EE6E0 /* LearningDashboard */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CF803E72ECF8E75004EE6E0 /* Build configuration list for PBXNativeTarget "LearningDashbaord" */;
+			buildConfigurationList = 7CF803E72ECF8E75004EE6E0 /* Build configuration list for PBXNativeTarget "LearningDashboard" */;
 			buildPhases = (
 				7CF803D82ECF8E73004EE6E0 /* Sources */,
 				7CF803D92ECF8E73004EE6E0 /* Frameworks */,
@@ -63,11 +63,11 @@
 			fileSystemSynchronizedGroups = (
 				7CF803DE2ECF8E73004EE6E0 /* LearningDashboard */,
 			);
-			name = LearningDashbaord;
+			name = LearningDashboard;
 			packageProductDependencies = (
 			);
 			productName = LearningDashbaord;
-			productReference = 7CF803DC2ECF8E73004EE6E0 /* LearningDashbaord.app */;
+			productReference = 7CF803DC2ECF8E73004EE6E0 /* LearningDashboard.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CF803DB2ECF8E73004EE6E0 /* LearningDashbaord */,
+				7CF803DB2ECF8E73004EE6E0 /* LearningDashboard */,
 			);
 		};
 /* End PBXProject section */
@@ -322,7 +322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CF803E72ECF8E75004EE6E0 /* Build configuration list for PBXNativeTarget "LearningDashbaord" */ = {
+		7CF803E72ECF8E75004EE6E0 /* Build configuration list for PBXNativeTarget "LearningDashboard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CF803E82ECF8E75004EE6E0 /* Debug */,
