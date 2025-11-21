@@ -6,51 +6,74 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DISTutorialView: View {
-    @State var items: [LearningItem]
-    var completedCount: Int {
-        items.filter { $0.isComplete }.count
-    }
-
-    var totalCount: Int {
-        items.count
-    }
-
-    var progressPercent: Double {
-        totalCount == 0 ? 0 : Double(completedCount) / Double(totalCount)
-    }
+    @EnvironmentObject var dashboard: LearningDashboardModel
+    @Environment(\.modelContext) private var context
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("\(completedCount) of \(totalCount) complete")
-            LinearProgressBar(progress: progressPercent)
-        }
-        .frame(height: 30)
-        .padding()
-        
         List {
-            ForEach(items.indices, id: \.self) { index in
-                let item = items[index]
-                
+            // Bind directly to the DIS array so toggles stay in sync
+            ForEach($dashboard.disPathwayItems) { $item in
                 HStack {
-                    Text(item.chapterTitle)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.chapterTitle)
+                            .font(.headline)
+                        
+                        Text(item.pathwayTitle)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
                     
                     Spacer()
                     
-                    Image(systemName: item.isComplete ? "checkmark.circle.fill" : "xmark.circle.fill")
-                        .foregroundStyle(item.isComplete ? .green : .red)
+                    Button {
+                        item.isComplete.toggle()
+                        
+                        do {
+                            try context.save()
+                        } catch {
+                            print("Failed to save update:", error)
+                        }
+                    } label: {
+                        Image(systemName: item.isComplete ? "checkmark.circle.fill" : "circle")
+                            .imageScale(.large)
+                    }
                 }
-                .onTapGesture {
-                    items[index].isComplete.toggle()
+                .padding(.vertical, 4)
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button {
+                        item.isComplete = true
+                        do { try context.save() } catch { print("Save error:", error) }
+                    } label: {
+                        Label("Complete", systemImage: "checkmark.circle")
+                    }
+                    .tint(.green)
+                }
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    Button {
+                        item.isComplete = false
+                        do { try context.save() } catch { print("Save error:", error) }
+                    } label: {
+                        Label("Reset", systemImage: "arrow.uturn.backward")
+                    }
+                    .tint(.orange)
                 }
             }
         }
-        .navigationTitle("Swift Pathway")
+        .navigationTitle("DIS Tutorials")
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                ProgressBarView(title: "DIS Tutorials Progess", percent: dashboard.disCompletionPercent, completed: dashboard.disCompletedCount, total: dashboard.disTotalCount)
+            }
+        }
     }
 }
 
-
 #Preview {
-    DISTutorialView(items: disItems)
+    NavigationStack {
+        DISTutorialView()
+            .environmentObject(LearningDashboardModel())
+    }
 }

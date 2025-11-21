@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct LearningDashboardApp: App {
@@ -16,5 +17,6 @@ struct LearningDashboardApp: App {
             ContentView()
                 .environmentObject(dashboard)
         }
+        .modelContainer(for: LearningItemModel.self)
     }
 }

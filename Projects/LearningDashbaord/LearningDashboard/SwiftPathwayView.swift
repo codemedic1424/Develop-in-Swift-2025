@@ -6,50 +6,75 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SwiftPathwayView: View {
-    @State var items: [LearningItem]
-    var completedCount: Int {
-        items.filter { $0.isComplete }.count
-    }
+    @EnvironmentObject var dashboard: LearningDashboardModel
+    @Environment(\.modelContext) private var context
 
-    var totalCount: Int {
-        items.count
-    }
-
-    var progressPercent: Double {
-        totalCount == 0 ? 0 : Double(completedCount) / Double(totalCount)
-    }
-    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("\(completedCount) of \(totalCount) complete")
-            LinearProgressBar(progress: progressPercent)
-        }
-        .frame(height: 30)
-        .padding()
-        
         List {
-            ForEach(items.indices, id: \.self) { index in
-                let item = items[index]
-                
+            // Bind directly to each LearningItem so toggles update the model
+            ForEach($dashboard.swiftPathwayItems) { $item in
                 HStack {
-                    Text(item.chapterTitle)
-                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.chapterTitle)
+                            .font(.headline)
+
+                        Text(item.pathwayTitle)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+
                     Spacer()
-                    
-                    Image(systemName: item.isComplete ? "checkmark.circle.fill" : "xmark.circle.fill")
-                        .foregroundStyle(item.isComplete ? .green : .red)
+
+                    Button {
+                        item.isComplete.toggle()
+                        
+                        do {
+                            try context.save()
+                        } catch {
+                            print("Failed to save update:", error)
+                        }
+                    } label: {
+                        Image(systemName: item.isComplete ? "checkmark.circle.fill" : "circle")
+                            .imageScale(.large)
+                    }
                 }
-                .onTapGesture {
-                    items[index].isComplete.toggle()
+                .padding(.vertical, 4)
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button {
+                        item.isComplete = true
+                        do { try context.save() } catch { print("Save error:", error) }
+                    } label: {
+                        Label("Complete", systemImage: "checkmark.circle")
+                    }
+                    .tint(.green)
+                }
+
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    Button {
+                        item.isComplete = false
+                        do { try context.save() } catch { print("Save error:", error) }
+                    } label: {
+                        Label("Reset", systemImage: "arrow.uturn.backward")
+                    }
+                    .tint(.orange)
                 }
             }
         }
         .navigationTitle("Swift Pathway")
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                ProgressBarView(title: "Swift Pathway Progress", percent: dashboard.swiftCompletionPercent, completed: dashboard.swiftCompletedCount, total: dashboard.swiftTotalCount)
+            }
+        }
     }
 }
 
 #Preview {
-    SwiftPathwayView(items: swiftItems)
+    NavigationStack {
+        SwiftPathwayView()
+            .environmentObject(LearningDashboardModel())
+    }
 }

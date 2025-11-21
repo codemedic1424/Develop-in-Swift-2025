@@ -18,8 +18,8 @@ struct PathwayCard: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(.ultraThinMaterial)
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.thinMaterial)
                 .shadow(radius: 2)
             VStack(spacing: 10) {
                 HStack {
@@ -37,6 +37,8 @@ struct PathwayCard: View {
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
+                Spacer(minLength: 0)
+                
                 Text("\(completed) of \(total) complete")
                     .font(.footnote)
                     .foregroundColor(.secondary)
@@ -44,10 +46,10 @@ struct PathwayCard: View {
                 
                 LinearProgressBar(progress: progress)
                     .frame(height: 20)
-                    .padding()
             }
             .padding()
         }
+        .contentShape(Rectangle())
     }
 }
 
