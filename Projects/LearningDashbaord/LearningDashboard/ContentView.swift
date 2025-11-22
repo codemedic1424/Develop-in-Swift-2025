@@ -7,10 +7,20 @@
 
 import SwiftUI
 import UIKit
+import SwiftData
 
 struct ContentView: View {
-    @EnvironmentObject var dashboard: LearningDashboardModel
-    @Environment(\.modelContext) private var modelContext
+    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "swift" })
+    private var swiftItems: [LearningItemModel]
+    
+    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "swiftui" })
+    private var swiftUIItems: [LearningItemModel]
+    
+    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "dis" })
+    private var disItems: [LearningItemModel]
+    
+    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "practice" })
+    private var practiceLabs: [LearningItemModel]
     
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -19,11 +29,11 @@ struct ContentView: View {
     
     // MARK: - Swift Pathway Progress
     private var swiftCompleted: Int {
-        dashboard.swiftPathwayItems.filter { $0.isComplete }.count
+        swiftItems.filter { $0.isComplete }.count
     }
     
     private var swiftTotal: Int {
-        dashboard.swiftPathwayItems.count
+        swiftItems.count
     }
     
     private var swiftProgress: Double {
@@ -33,11 +43,11 @@ struct ContentView: View {
     
     // MARK: - SwiftUI Pathway Progress
     private var swiftUICompleted: Int {
-        dashboard.swiftUIPathwayItems.filter { $0.isComplete }.count
+        swiftUIItems.filter { $0.isComplete }.count
     }
     
     private var swiftUITotal: Int {
-        dashboard.swiftUIPathwayItems.count
+        swiftUIItems.count
     }
     
     private var swiftUIProgress: Double {
@@ -47,11 +57,11 @@ struct ContentView: View {
     
     // MARK: - DIS Tutorial Progress
     private var disCompleted: Int {
-        dashboard.disPathwayItems.filter { $0.isComplete }.count
+        disItems.filter { $0.isComplete }.count
     }
     
     private var disTotal: Int {
-        dashboard.disPathwayItems.count
+        disItems.count
     }
     
     private var disProgress: Double {
@@ -61,11 +71,11 @@ struct ContentView: View {
     
     // MARK: - Practice Labs Progress
     private var practiceCompleted: Int {
-        dashboard.practiceLabItems.filter { $0.isComplete }.count
+        practiceLabs.filter { $0.isComplete }.count
     }
     
     private var practiceTotal: Int {
-        dashboard.practiceLabItems.count
+        practiceLabs.count
     }
     
     private var practiceProgress: Double {
@@ -73,14 +83,39 @@ struct ContentView: View {
         return Double(practiceCompleted) / Double(practiceTotal)
     }
     
+    // MARK: - Global Progress
+    private var globalCompleted: Int {
+        swiftCompleted + swiftUICompleted + disCompleted + practiceCompleted
+    }
+    
+    private var globalTotal: Int {
+        swiftTotal + swiftUITotal + disTotal + practiceTotal
+    }
+    
+    private var globalProgress: Double {
+        guard globalTotal > 0 else { return 0 }
+        return Double(globalCompleted) / Double(globalTotal)
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Overall Progress")
+                        .font(.title2)
+                        .bold()
+                    Text("\(globalCompleted) of \(globalTotal) items completed")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    ProgressView(value: globalProgress)
+                }
+                .padding([.horizontal, .top])
+                
                 LazyVGrid(columns: columns) {
                     
                     
                     NavigationLink {
-                        SwiftPathwayView() 
+                        SwiftPathwayView()
                     } label: {
                         PathwayCard(title: "Swift Pathway", subtitle: "Learn the foundations of Swift", completed: swiftCompleted, total: swiftTotal, progress: swiftProgress, iconName: "swift")
                             .frame(height: 210)
@@ -131,5 +166,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(LearningDashboardModel())
+        .modelContainer(for: LearningItemModel.self, inMemory: true)
 }

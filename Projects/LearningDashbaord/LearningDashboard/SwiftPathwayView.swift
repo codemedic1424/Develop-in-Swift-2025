@@ -9,11 +9,13 @@ import SwiftUI
 import SwiftData
 
 struct SwiftPathwayView: View {
-    @EnvironmentObject var dashboard: LearningDashboardModel
     @Environment(\.modelContext) private var context
-    @Query(filter: #Predicate<LearningItemModel> { item in
-        item.pathway == "swift"
-    }, sort: \.title)
+    @Query(
+        filter: #Predicate<LearningItemModel> { item in
+            item.pathway == "swift"
+        },
+        sort: \.order
+    )
     private var swiftItems: [LearningItemModel]
 
     // MARK: - Derived progress values
@@ -28,6 +30,49 @@ struct SwiftPathwayView: View {
     private var completionPercent: Double {
         guard totalCount > 0 else { return 0 }
         return Double(completedCount) / Double(totalCount)
+    }
+    
+    // MARK: - One-time seeding for Swift Pathway
+    private func seedSwiftPathwayIfNeeded() {
+        guard swiftItems.isEmpty else { return }
+
+        let initialSwiftTitles: [String] = [
+            "Video: A Swift Tour",
+            "The Basics",
+            "Type Safety and Type Inference",
+            "Collection Types",
+            "Control flow",
+            "Functions",
+            "Value and reference types",
+            "Structures and classes",
+            "Choosing between structures and classes",
+            "Enumerations",
+            "Swift Testing",
+            "SwiftData",
+            "Protocols",
+            "Generics",
+            "Concurrency",
+            "Macros",
+            "Embedded Swift",
+            "Run Swift on Server"
+        ]
+
+        for (index, title) in initialSwiftTitles.enumerated() {
+            let item = LearningItemModel(
+                pathway: "swift",
+                title: title,
+                isComplete: false,
+                order: index
+            )
+            context.insert(item)
+        }
+
+        do {
+            try context.save()
+            print("Swift pathway seeded! 🎉")
+        } catch {
+            print("Error seeding Swift pathway:", error)
+        }
     }
 
     var body: some View {
@@ -78,6 +123,9 @@ struct SwiftPathwayView: View {
             }
         }
         .navigationTitle("Swift Pathway")
+        .onAppear {
+            seedSwiftPathwayIfNeeded()
+        }
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 ProgressBarView(
@@ -94,6 +142,6 @@ struct SwiftPathwayView: View {
 #Preview {
     NavigationStack {
         SwiftPathwayView()
-            .environmentObject(LearningDashboardModel())
     }
+    .modelContainer(for: LearningItemModel.self, inMemory: true)
 }
