@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7CCC40E92ED21AE600555D30 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC40E82ED21AE200555D30 /* Test.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		7CCC40E82ED21AE200555D30 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		7CF803DC2ECF8E73004EE6E0 /* LearningDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -34,6 +39,7 @@
 			children = (
 				7CF803DE2ECF8E73004EE6E0 /* LearningDashboard */,
 				7CF803DD2ECF8E73004EE6E0 /* Products */,
+				7CCC40E82ED21AE200555D30 /* Test.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCC40E92ED21AE600555D30 /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
