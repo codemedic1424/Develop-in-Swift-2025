@@ -17,6 +17,37 @@ struct SwiftPathwayView: View {
         sort: \.order
     )
     private var swiftItems: [LearningItemModel]
+    
+    //MARK: - Add Lesson Variables
+    
+    @State private var isPresentingAddLessonSheet: Bool = false
+    @State private var newLessonTitle: String = ""
+    
+    // MARK: - Add new Swift lesson
+    private func addSwiftLesson() {
+        // Trim whitespace so we don't create blank titles
+        let trimmedTitle = newLessonTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedTitle.isEmpty else { return }
+
+        // Find the next order value so the lesson appears at the bottom
+        let nextOrder = (swiftItems.map(\.order).max() ?? -1) + 1
+
+        let item = LearningItemModel(
+            pathway: "swift",
+            title: trimmedTitle,
+            isComplete: false,
+            order: nextOrder
+        )
+
+        context.insert(item)
+
+        do {
+            try context.save()
+            newLessonTitle = ""
+        } catch {
+            print("Error adding Swift lesson:", error)
+        }
+    }
 
     // MARK: - Derived progress values
     private var completedCount: Int {
@@ -126,7 +157,17 @@ struct SwiftPathwayView: View {
         .onAppear {
             seedSwiftPathwayIfNeeded()
         }
+        //MARK: - Progress Bar (Bottom)
         .toolbar {
+            // Top-right plus button
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            newLessonTitle = ""
+                            isPresentingAddLessonSheet = true
+                        } label: {
+                            Label("Add lesson", systemImage: "plus")
+                        }
+                    }
             ToolbarItem(placement: .bottomBar) {
                 ProgressBarView(
                     title: "Swift Pathway Progress",
@@ -134,6 +175,33 @@ struct SwiftPathwayView: View {
                     completed: completedCount,
                     total: totalCount
                 )
+            }
+        }
+        //MARK: - Lesson Sheet
+        .sheet(isPresented: $isPresentingAddLessonSheet) {
+            NavigationStack {
+                Form {
+                    Section("New Swift lesson") {
+                        TextField("Lesson title", text: $newLessonTitle)
+                            .textInputAutocapitalization(.words)
+                    }
+                }
+                .navigationTitle("Add lesson")
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            newLessonTitle = ""
+                            isPresentingAddLessonSheet = false
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            addSwiftLesson()
+                            isPresentingAddLessonSheet = false
+                        }
+                        .disabled(newLessonTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
+                }
             }
         }
     }
