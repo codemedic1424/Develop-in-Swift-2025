@@ -9,14 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct PracticeLabsView: View {
+    
+    init() { }
+    
     @Environment(\.modelContext) private var context
+    // Grab all LearningItemModel rows from SwiftData
     @Query(
-        filter: #Predicate<LearningItemModel> { item in
-            item.pathway == "practice"
-        },
+        filter: #Predicate<LearningItemModel> { _ in true },
         sort: \.order
     )
-    private var practiceLabs: [LearningItemModel]
+    private var allItems: [LearningItemModel]
+    
+    // Then filter in-memory to just the Swift pathway
+    private var practiceLabs: [LearningItemModel] {
+        allItems.filter { $0.pathway == .practiceLabs }
+    }
     
     //MARK: - Add Lesson Variables
     
@@ -33,20 +40,15 @@ struct PracticeLabsView: View {
         let nextOrder = (practiceLabs.map(\.order).max() ?? -1) + 1
         
         let item = LearningItemModel(
-            pathway: "labs",
+            pathway: .practiceLabs,
             title: trimmedTitle,
             isComplete: false,
             order: nextOrder
         )
         
         context.insert(item)
-        
-        do {
-            try context.save()
-            newLessonTitle = ""
-        } catch {
-            print("Error adding Swift lesson:", error)
-        }
+        saveContext("adding Practice Lab lesson")
+        newLessonTitle = ""
     }
     
     // MARK: - Derived progress values
@@ -61,6 +63,15 @@ struct PracticeLabsView: View {
     private var completionPercent: Double {
         guard totalCount > 0 else { return 0 }
         return Double(completedCount) / Double(totalCount)
+    }
+    
+    // MARK: - Save Helper
+    private func saveContext(_ actionDescription: String) {
+        do {
+            try context.save()
+        } catch {
+            print("PracticeLabsView save error (\(actionDescription)):", error)
+        }
     }
     
     // MARK: - Seeding
@@ -81,7 +92,7 @@ struct PracticeLabsView: View {
         
         for (index, title) in practiceTitles.enumerated() {
             let item = LearningItemModel(
-                pathway: "practice",
+                pathway: .practiceLabs,
                 title: title,
                 isComplete: false,
                 order: index
@@ -89,11 +100,7 @@ struct PracticeLabsView: View {
             context.insert(item)
         }
         
-        do {
-            try context.save()
-        } catch {
-            print("Failed to seed Practice Labs items:", error)
-        }
+        saveContext("seeding Practice Labs items")
     }
     
     var body: some View {
@@ -114,12 +121,7 @@ struct PracticeLabsView: View {
                     
                     Button {
                         item.isComplete.toggle()
-                        
-                        do {
-                            try context.save()
-                        } catch {
-                            print("Failed to save update:", error)
-                        }
+                        saveContext("toggling Practice Lab completion from main button")
                     } label: {
                         Image(systemName: item.isComplete ? "checkmark.circle.fill" : "circle")
                             .imageScale(.large)
@@ -129,7 +131,7 @@ struct PracticeLabsView: View {
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button {
                         item.isComplete = true
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext("marking Practice Lab complete via swipe")
                     } label: {
                         Label("Complete", systemImage: "checkmark.circle")
                     }
@@ -139,7 +141,7 @@ struct PracticeLabsView: View {
                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
                     Button {
                         item.isComplete = false
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext("resetting Practice Lab via swipe")
                     } label: {
                         Label("Reset", systemImage: "arrow.uturn.backward")
                     }
@@ -208,4 +210,3 @@ struct PracticeLabsView: View {
     }
     .modelContainer(for: LearningItemModel.self, inMemory: true)
 }
-

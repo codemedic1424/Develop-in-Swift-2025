@@ -9,11 +9,22 @@ import SwiftUI
 import SwiftData
 
 struct SwiftPathwayView: View {
+    
+    init() { }
+    
     @Environment(\.modelContext) private var context
-    @Query(filter: #Predicate<LearningItemModel> { item in
-        item.pathway == "swift"
-    },sort: \.order)
-    private var swiftItems: [LearningItemModel]
+    
+    // Grab all LearningItemModel rows from SwiftData
+    @Query(
+        filter: #Predicate<LearningItemModel> { _ in true },
+        sort: \.order
+    )
+    private var allItems: [LearningItemModel]
+    
+    // Then filter in-memory to just the Swift pathway
+    private var swiftItems: [LearningItemModel] {
+        allItems.filter { $0.pathway == .swift }
+    }
     
     //MARK: - Add Lesson Variables
     
@@ -30,7 +41,7 @@ struct SwiftPathwayView: View {
         let nextOrder = (swiftItems.map(\.order).max() ?? -1) + 1
         
         let item = LearningItemModel(
-            pathway: "swift",
+            pathway: .swift,
             title: trimmedTitle,
             isComplete: false,
             order: nextOrder
@@ -38,11 +49,16 @@ struct SwiftPathwayView: View {
         
         context.insert(item)
         
+        saveContext(context)
+        newLessonTitle = ""
+    }
+
+    // MARK: - Save helper
+    private func saveContext(_ context: ModelContext) {
         do {
             try context.save()
-            newLessonTitle = ""
         } catch {
-            print("Error adding Swift lesson:", error)
+            print("SwiftPathwayView save error:", error)
         }
     }
     
@@ -87,7 +103,7 @@ struct SwiftPathwayView: View {
         
         for (index, title) in initialSwiftTitles.enumerated() {
             let item = LearningItemModel(
-                pathway: "swift",
+                pathway: .swift,
                 title: title,
                 isComplete: false,
                 order: index
@@ -95,34 +111,31 @@ struct SwiftPathwayView: View {
             context.insert(item)
         }
         
-        do {
-            try context.save()
-            print("Swift pathway seeded! 🎉")
-        } catch {
-            print("Error seeding Swift pathway:", error)
-        }
+        saveContext(context)
+        print("Swift pathway seeded! 🎉")
     }
     
+    // MARK: - Status text helper
+    private func statusText(for item: LearningItemModel) -> String {
+        item.isComplete ? "Complete" : "Not started"
+    }
+
     var body: some View {
         List {
-            // Bind directly to each LearningItem so toggles update the model
-            ForEach(swiftItems) { item in
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(item.title)
-                            .font(.headline)
-                    }
-                    
-                    Spacer()
+                ForEach(swiftItems) { item in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(item.title)
+                            Text(statusText(for: item))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
                     
                     Button {
                         item.isComplete.toggle()
-                        
-                        do {
-                            try context.save()
-                        } catch {
-                            print("Failed to save update:", error)
-                        }
+                        saveContext(context)
                     } label: {
                         Image(systemName: item.isComplete ? "checkmark.circle.fill" : "circle")
                             .imageScale(.large)
@@ -132,7 +145,7 @@ struct SwiftPathwayView: View {
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button {
                         item.isComplete = true
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext(context)
                     } label: {
                         Label("Complete", systemImage: "checkmark.circle")
                     }
@@ -142,7 +155,7 @@ struct SwiftPathwayView: View {
                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
                     Button {
                         item.isComplete = false
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext(context)
                     } label: {
                         Label("Reset", systemImage: "arrow.uturn.backward")
                     }

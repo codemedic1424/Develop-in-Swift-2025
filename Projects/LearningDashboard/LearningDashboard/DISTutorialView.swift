@@ -40,14 +40,21 @@ private let disTutorialTitles: [String] = [
 ]
 
 struct DISTutorialView: View {
+    
+    init() { }
+    
     @Environment(\.modelContext) private var context
+    // Grab all LearningItemModel rows from SwiftData
     @Query(
-        filter: #Predicate<LearningItemModel> { item in
-            item.pathway == "dis"
-        },
+        filter: #Predicate<LearningItemModel> { _ in true },
         sort: \.order
     )
-    private var disItems: [LearningItemModel]
+    private var allItems: [LearningItemModel]
+    
+    // Then filter in-memory to just the Swift pathway
+    private var disItems: [LearningItemModel] {
+        allItems.filter { $0.pathway == .developInSwift }
+    }
     
     //MARK: - Add Lesson Variables
     
@@ -64,20 +71,15 @@ struct DISTutorialView: View {
         let nextOrder = (disItems.map(\.order).max() ?? -1) + 1
         
         let item = LearningItemModel(
-            pathway: "dis",
+            pathway: .developInSwift,
             title: trimmedTitle,
             isComplete: false,
             order: nextOrder
         )
         
         context.insert(item)
-        
-        do {
-            try context.save()
-            newLessonTitle = ""
-        } catch {
-            print("Error adding Swift lesson:", error)
-        }
+        saveContext("adding DIS lesson")
+        newLessonTitle = ""
     }
     
     // MARK: - Derived progress values
@@ -94,6 +96,15 @@ struct DISTutorialView: View {
         return Double(completedCount) / Double(totalCount)
     }
     
+    // MARK: - Save helper
+    private func saveContext(_ actionDescription: String) {
+        do {
+            try context.save()
+        } catch {
+            print("DISTutorialView save error (\(actionDescription)):", error)
+        }
+    }
+    
     //MARK: - Seeding
     
     private func seedDevelopInSwiftIfNeeded() {
@@ -101,7 +112,7 @@ struct DISTutorialView: View {
         
         for (index, title) in disTutorialTitles.enumerated() {
             let item = LearningItemModel(
-                pathway: "dis",
+                pathway: .developInSwift,
                 title: title,
                 isComplete: false,
                 order: index
@@ -109,11 +120,7 @@ struct DISTutorialView: View {
             context.insert(item)
         }
         
-        do {
-            try context.save()
-        } catch {
-            print("Failed to seed Develop in Swift items:", error)
-        }
+        saveContext("seeding Develop in Swift items")
     }
     
     var body: some View {
@@ -133,12 +140,7 @@ struct DISTutorialView: View {
                     
                     Button {
                         item.isComplete.toggle()
-                        
-                        do {
-                            try context.save()
-                        } catch {
-                            print("Failed to save update:", error)
-                        }
+                        saveContext("toggling completion from main button")
                     } label: {
                         Image(systemName: item.isComplete ? "checkmark.circle.fill" : "circle")
                             .imageScale(.large)
@@ -148,7 +150,7 @@ struct DISTutorialView: View {
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button {
                         item.isComplete = true
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext("marking DIS lesson complete via swipe")
                     } label: {
                         Label("Complete", systemImage: "checkmark.circle")
                     }
@@ -157,7 +159,7 @@ struct DISTutorialView: View {
                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
                     Button {
                         item.isComplete = false
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext("resetting DIS lesson via swipe")
                     } label: {
                         Label("Reset", systemImage: "arrow.uturn.backward")
                     }

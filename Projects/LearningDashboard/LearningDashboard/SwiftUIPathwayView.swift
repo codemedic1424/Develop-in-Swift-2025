@@ -9,11 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct SwiftUIPathwayView: View {
+    
+    init() { }
+    
     @Environment(\.modelContext) private var context
-    @Query(filter: #Predicate<LearningItemModel> { item in
-        item.pathway == "swiftui"
-    }, sort: \.order)
-    private var swiftUIItems: [LearningItemModel]
+    // Grab all LearningItemModel rows from SwiftData
+    @Query(
+        filter: #Predicate<LearningItemModel> { _ in true },
+        sort: \.order
+    )
+    private var allItems: [LearningItemModel]
+    
+    // Then filter in-memory to just the Swift pathway
+    private var swiftUIItems: [LearningItemModel] {
+        allItems.filter { $0.pathway == .swiftUI }
+    }
     
     //MARK: - Add Lesson Variables
     
@@ -30,7 +40,7 @@ struct SwiftUIPathwayView: View {
         let nextOrder = (swiftUIItems.map(\.order).max() ?? -1) + 1
         
         let item = LearningItemModel(
-            pathway: "swiftui",
+            pathway: .swiftUI,
             title: trimmedTitle,
             isComplete: false,
             order: nextOrder
@@ -38,11 +48,16 @@ struct SwiftUIPathwayView: View {
         
         context.insert(item)
         
+        saveContext("adding SwiftUI lesson")
+        newLessonTitle = ""
+    }
+    
+    // MARK: - Save Helper
+    private func saveContext(_ actionDescription: String) {
         do {
             try context.save()
-            newLessonTitle = ""
         } catch {
-            print("Error adding Swift lesson:", error)
+            print("SwiftUIPathwayView save error (\(actionDescription)):", error)
         }
     }
     
@@ -77,7 +92,7 @@ struct SwiftUIPathwayView: View {
         
         for (index, title) in swiftUItitles.enumerated() {
             let item = LearningItemModel(
-                pathway: "swiftui",
+                pathway: .swiftUI,
                 title: title,
                 isComplete: false,
                 order: index      // <–– assign order here
@@ -85,11 +100,7 @@ struct SwiftUIPathwayView: View {
             context.insert(item)
         }
         
-        do {
-            try context.save()
-        } catch {
-            print("Failed to seed SwiftUI pathway:", error)
-        }
+        saveContext("seeding SwiftUI pathway")
     }
     
     var body: some View {
@@ -109,12 +120,7 @@ struct SwiftUIPathwayView: View {
                     
                     Button {
                         item.isComplete.toggle()
-                        
-                        do {
-                            try context.save()
-                        } catch {
-                            print("Failed to save update:", error)
-                        }
+                        saveContext("toggling SwiftUI lesson completion")
                     } label: {
                         Image(systemName: item.isComplete ? "checkmark.circle.fill" : "circle")
                             .imageScale(.large)
@@ -124,7 +130,7 @@ struct SwiftUIPathwayView: View {
                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                     Button {
                         item.isComplete = true
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext("mark SwiftUI lesson complete via swipe")
                     } label: {
                         Label("Complete", systemImage: "checkmark.circle")
                     }
@@ -134,7 +140,7 @@ struct SwiftUIPathwayView: View {
                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
                     Button {
                         item.isComplete = false
-                        do { try context.save() } catch { print("Save error:", error) }
+                        saveContext("reset SwiftUI lesson via swipe")
                     } label: {
                         Label("Reset", systemImage: "arrow.uturn.backward")
                     }

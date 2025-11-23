@@ -10,17 +10,26 @@ import UIKit
 import SwiftData
 
 struct ContentView: View {
-    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "swift" })
-    private var swiftItems: [LearningItemModel]
-    
-    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "swiftui" })
-    private var swiftUIItems: [LearningItemModel]
-    
-    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "dis" })
-    private var disItems: [LearningItemModel]
-    
-    @Query(filter: #Predicate<LearningItemModel> { $0.pathway == "practice" })
-    private var practiceLabs: [LearningItemModel]
+    // Fetch all items once, sorted by order
+    @Query(sort: \LearningItemModel.order)
+    private var allItems: [LearningItemModel]
+
+    // Per-pathway slices computed in memory
+    private var swiftItems: [LearningItemModel] {
+        allItems.filter { $0.pathway == .swift }
+    }
+
+    private var swiftUIItems: [LearningItemModel] {
+        allItems.filter { $0.pathway == .swiftUI }
+    }
+
+    private var disItems: [LearningItemModel] {
+        allItems.filter { $0.pathway == .developInSwift }
+    }
+
+    private var practiceLabs: [LearningItemModel] {
+        allItems.filter { $0.pathway == .practiceLabs }
+    }
     
     private let columns = [
         GridItem(.flexible(), spacing: 16),
