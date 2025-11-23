@@ -5,6 +5,8 @@
 //  Created by Christopher Wilshusen on 11/20/25.
 //
 
+//MARK: Notes:     •    item.pathway stores a short key: "swift", "swiftui", "dis", "labs"
+
 import Foundation
 import SwiftData
 

@@ -28,19 +28,19 @@ struct SwiftPathwayView: View {
         // Trim whitespace so we don't create blank titles
         let trimmedTitle = newLessonTitle.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedTitle.isEmpty else { return }
-
+        
         // Find the next order value so the lesson appears at the bottom
         let nextOrder = (swiftItems.map(\.order).max() ?? -1) + 1
-
+        
         let item = LearningItemModel(
             pathway: "swift",
             title: trimmedTitle,
             isComplete: false,
             order: nextOrder
         )
-
+        
         context.insert(item)
-
+        
         do {
             try context.save()
             newLessonTitle = ""
@@ -48,16 +48,16 @@ struct SwiftPathwayView: View {
             print("Error adding Swift lesson:", error)
         }
     }
-
+    
     // MARK: - Derived progress values
     private var completedCount: Int {
         swiftItems.filter { $0.isComplete }.count
     }
-
+    
     private var totalCount: Int {
         swiftItems.count
     }
-
+    
     private var completionPercent: Double {
         guard totalCount > 0 else { return 0 }
         return Double(completedCount) / Double(totalCount)
@@ -66,7 +66,7 @@ struct SwiftPathwayView: View {
     // MARK: - One-time seeding for Swift Pathway
     private func seedSwiftPathwayIfNeeded() {
         guard swiftItems.isEmpty else { return }
-
+        
         let initialSwiftTitles: [String] = [
             "Video: A Swift Tour",
             "The Basics",
@@ -87,7 +87,7 @@ struct SwiftPathwayView: View {
             "Embedded Swift",
             "Run Swift on Server"
         ]
-
+        
         for (index, title) in initialSwiftTitles.enumerated() {
             let item = LearningItemModel(
                 pathway: "swift",
@@ -97,7 +97,7 @@ struct SwiftPathwayView: View {
             )
             context.insert(item)
         }
-
+        
         do {
             try context.save()
             print("Swift pathway seeded! 🎉")
@@ -105,7 +105,7 @@ struct SwiftPathwayView: View {
             print("Error seeding Swift pathway:", error)
         }
     }
-
+    
     var body: some View {
         List {
             // Bind directly to each LearningItem so toggles update the model
@@ -115,9 +115,9 @@ struct SwiftPathwayView: View {
                         Text(item.title)
                             .font(.headline)
                     }
-
+                    
                     Spacer()
-
+                    
                     Button {
                         item.isComplete.toggle()
                         
@@ -141,7 +141,7 @@ struct SwiftPathwayView: View {
                     }
                     .tint(.green)
                 }
-
+                
                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
                     Button {
                         item.isComplete = false
@@ -157,17 +157,18 @@ struct SwiftPathwayView: View {
         .onAppear {
             seedSwiftPathwayIfNeeded()
         }
-        //MARK: - Progress Bar (Bottom)
+        //MARK: - Add Button
         .toolbar {
             // Top-right plus button
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            newLessonTitle = ""
-                            isPresentingAddLessonSheet = true
-                        } label: {
-                            Label("Add lesson", systemImage: "plus")
-                        }
-                    }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    newLessonTitle = ""
+                    isPresentingAddLessonSheet = true
+                } label: {
+                    Label("Add lesson", systemImage: "plus")
+                }
+            }
+            //MARK: - Progress Bar (Bottom)
             ToolbarItem(placement: .bottomBar) {
                 ProgressBarView(
                     title: "Swift Pathway Progress",

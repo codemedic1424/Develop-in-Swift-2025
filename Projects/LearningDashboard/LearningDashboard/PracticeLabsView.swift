@@ -18,6 +18,37 @@ struct PracticeLabsView: View {
     )
     private var practiceLabs: [LearningItemModel]
     
+    //MARK: - Add Lesson Variables
+    
+    @State private var isPresentingAddLessonSheet: Bool = false
+    @State private var newLessonTitle: String = ""
+    
+    // MARK: - Add new Practice lesson
+    private func addPracticeLabs() {
+        // Trim whitespace so we don't create blank titles
+        let trimmedTitle = newLessonTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedTitle.isEmpty else { return }
+        
+        // Find the next order value so the lesson appears at the bottom
+        let nextOrder = (practiceLabs.map(\.order).max() ?? -1) + 1
+        
+        let item = LearningItemModel(
+            pathway: "labs",
+            title: trimmedTitle,
+            isComplete: false,
+            order: nextOrder
+        )
+        
+        context.insert(item)
+        
+        do {
+            try context.save()
+            newLessonTitle = ""
+        } catch {
+            print("Error adding Swift lesson:", error)
+        }
+    }
+    
     // MARK: - Derived progress values
     private var completedCount: Int {
         practiceLabs.filter { $0.isComplete }.count
@@ -117,21 +148,59 @@ struct PracticeLabsView: View {
             }
         }
         .navigationTitle("Practice Labs")
+        .onAppear {
+            seedPracticeLabsIfNeeded()
+        }
+        //MARK: - Add Button
         .toolbar {
+            // Top-right plus button
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    newLessonTitle = ""
+                    isPresentingAddLessonSheet = true
+                } label: {
+                    Label("Add lesson", systemImage: "plus")
+                }
+            }
+            //MARK: - Progress Bar (Bottom)
             ToolbarItem(placement: .bottomBar) {
                 ProgressBarView(
                     title: "Practice Labs Progress",
                     percent: completionPercent,
                     completed: completedCount,
-                    total: totalCount)
+                    total: totalCount
+                )
             }
         }
-        .onAppear {
-            seedPracticeLabsIfNeeded()
+        //MARK: - Lesson Sheet
+        .sheet(isPresented: $isPresentingAddLessonSheet) {
+            NavigationStack {
+                Form {
+                    Section("New Practice Lab lesson") {
+                        TextField("Lesson title", text: $newLessonTitle)
+                            .textInputAutocapitalization(.words)
+                    }
+                }
+                .navigationTitle("Add lesson")
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            newLessonTitle = ""
+                            isPresentingAddLessonSheet = false
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            addPracticeLabs()
+                            isPresentingAddLessonSheet = false
+                        }
+                        .disabled(newLessonTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    }
+                }
+            }
         }
     }
 }
-
 
 #Preview {
     NavigationStack {
