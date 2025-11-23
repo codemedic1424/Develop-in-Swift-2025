@@ -10,6 +10,30 @@
 import Foundation
 import SwiftData
 
+//MARK: - Pathway Enum
+
+enum Pathway: String, Codable, CaseIterable, Identifiable {
+    case swift
+    case swiftUI
+    case developInSwift
+    case practiceLabs
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .swift:
+            return "Swift Pathway"
+        case .swiftUI:
+            return "SwiftUI Pathway"
+        case .developInSwift:
+            return "Develop in Swift"
+        case .practiceLabs:
+            return "Practice Labs"
+        }
+    }
+}
+
 @Model
 class LearningItemModel {
     var pathway: String       // e.g. "Swift Pathway"
