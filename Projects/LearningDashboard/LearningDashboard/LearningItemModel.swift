@@ -36,15 +36,16 @@ enum Pathway: String, Codable, CaseIterable, Identifiable {
 
 @Model
 class LearningItemModel {
-    var pathway: String       // e.g. "Swift Pathway"
+    var pathway: Pathway      // Use the enum instead of String
     var title: String         // e.g. "The Basics"
     var isComplete: Bool      // whether you've finished it
     var order: Int
     
-    init(pathway: String,
+    init(pathway: Pathway,
          title: String,
          isComplete: Bool = false,
          order: Int) {
+
         self.pathway = pathway
         self.title = title
         self.isComplete = isComplete
