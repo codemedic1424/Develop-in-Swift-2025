@@ -10,12 +10,9 @@ import SwiftData
 
 struct SwiftPathwayView: View {
     @Environment(\.modelContext) private var context
-    @Query(
-        filter: #Predicate<LearningItemModel> { item in
-            item.pathway == "swift"
-        },
-        sort: \.order
-    )
+    @Query(filter: #Predicate<LearningItemModel> { item in
+        item.pathway == "swift"
+    },sort: \.order)
     private var swiftItems: [LearningItemModel]
     
     //MARK: - Add Lesson Variables
