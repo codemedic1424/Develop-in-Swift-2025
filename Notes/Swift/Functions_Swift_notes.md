@@ -2,7 +2,7 @@
 Functions in Swift
 
 ### 🗓 Date  
-YYYY-MM-DD
+2025-11-23
 
 ## 1. Summary  
 Functions in Swift are self‑contained chunks of code that perform specific tasks. They can accept inputs (parameters), return outputs, and help organize and reuse logic.
