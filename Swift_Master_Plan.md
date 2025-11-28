@@ -20,6 +20,9 @@ It replaces all previous roadmaps, plans, and fragmented notes.
 - Error handling  
 - Closures  
 
+### 🟦 Optionals  
+*Covered in Swift Fundamentals. See practice tasks for reinforcement.*
+
 ## **SwiftUI Essentials**
 - Views, modifiers  
 - Layout system  
@@ -242,4 +245,3 @@ git merge feature/mybranch
 
 # 🎉 End of Master Document  
 Your entire Swift journey now lives here.
-
