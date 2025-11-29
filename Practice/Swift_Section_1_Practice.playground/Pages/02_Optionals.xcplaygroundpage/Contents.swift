@@ -11,46 +11,40 @@ import Foundation
 
 var middleName: String? = nil
 
-// Later, pretend we got data from a form:
-middleName = "Daniel"
-
 // MARK: - 2. Optional Binding (if let)
+// TODO: Use optional binding (if let) to safely unwrap middleName.
+
 if let unwrappedMiddleName = middleName {
-    print("Middle name is \(unwrappedMiddleName).")
+    print("The middle name is \(unwrappedMiddleName)")
 } else {
-    print("No middle name on file.")
+    print("The middle name does not exist.")
 }
 
 // MARK: - 3. Nil-Coalescing Operator (??)
 // TODO: Use ?? to provide a default when middleName is nil.
 
-middleName = nil
-let displayName = middleName ?? "No Middle Name"
-print("Display name: \(displayName)")
+let coalessedMiddleName = middleName ?? "Error: No middle name is present."
+print(coalessedMiddleName)
 
 // MARK: - 4. Optional Int from String
 // TODO: Convert a String to Int using Int("...") and handle the optional safely.
+let age: String? = nil
 
-let input = "42"
-let maybeNumber = Int(input)
-
-if let number = maybeNumber {
-    print("Converted number: \(number)")
+if let ageString = age, let integerAge = Int(ageString) {
+    print("The age is \(integerAge).")
 } else {
-    print("Could not convert input to Int.")
+    print("No age provided or the value is not a valid number.")
 }
 
 // MARK: - 5. Mini Checkpoint
 // TODO: Write a small function that takes a String? and prints either the value or "Missing".
-func printOptional(_ label: String, value: String?) {
-    if let value {
-        print("\(label): \(value)")
+func optionalOutput(message: String?) {
+    if let goodMessage = message {
+        print(goodMessage)
     } else {
-        print("\(label): Missing")
+        print("Missing")
     }
 }
 
-printOptional("Nickname", value: "Echo")
-printOptional("Badge Name", value: nil)
-
+optionalOutput(message: "Smoke")
 //: [Next](@next)
