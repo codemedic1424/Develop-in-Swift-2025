@@ -63,6 +63,38 @@ var airportCodes = [
 ]
 ```
 
+##### Additional Real‑World Examples
+
+**Example: Tracking Assigned EMS Crew Members**
+```swift
+let crews = [
+    "Medic1": ["Alice", "Bob"],
+    "Medic2": [],
+    "Medic3": ["Charlie"]
+]
+```
+
+**Example: Checking Whether a Unit Has a Crew**
+- A dictionary lookup returns an *optional* `[String]?`
+- You can check if a crew exists and is not empty:
+```swift
+if let crew = crews["Medic1"], !crew.isEmpty {
+    print("Medic1 has a crew assigned.")
+} else {
+    print("Medic1 has no crew.")
+}
+```
+
+**Example: Printing All Units That Have a Crew**
+```swift
+for (unit, crew) in crews {
+    if !crew.isEmpty {
+        print("\(unit) has a crew assigned.")
+    }
+}
+```
+```
+
 ## 5. When to Use This  
 ```
 ### When to Use Each Collection Type

@@ -35,8 +35,24 @@ print(stations)
 // MARK: - 3. Dictionaries
 var unitCrewCount: [String: Int] = [:]
 // TODO: Add units and crew counts, then read values safely
+unitCrewCount = ["M1" : 2, "L1" : 3, "M2" : 2, "E2" : 2, "M3" : 0, "E3" : 3]
+if let medicOneCrew = unitCrewCount["E4"] {
+    print("Medic 1 has \(medicOneCrew) crew members scheduled.")
+} else {
+    print("Unit does not exist on the schedule.")
+}
+
+@MainActor func rosterList() {
+    for (unitName, crewNumber) in unitCrewCount {
+        print("\(unitName) has \(crewNumber) crewmembers scheduled.")
+    }
+}
+    
 
 // MARK: - 4. Mini Checkpoint
 // TODO: Add another unit and loop through all entries
+unitCrewCount["E4"] = 4
+
+rosterList()
 
 //: [Next](@next)
