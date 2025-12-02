@@ -117,6 +117,25 @@ Line 105 calls `operate()` using "+" as the symbol.
 Line 106 sets the return value of operate. It will be replaced by either `add(8,3)` or `subtract(8,3)` based on the value of `symbol` passed to `operate()`
 Line 107 prints the value of `result` to the console. 
 
+### 4B. Variadic Parameters
+A variadic parameter (VP) accepts zero or more values of a specified type. To indicate a variadic parameter, insert three periods after the parameter's name type. Ex. `Doube...` The values passed to a VP are made available as an array of appropriate types located in the function body. Ex. `[Double]`
+A function can have multiple VP, however, the first parameter to come after a VP, must contain an argument label to discern which arguments are passed to the parameters that come after the VPs. 
+
+#### Variadic Parameter Example:
+
+This example calcualtes the arithmetic mean or average of a list of numbers of any length.
+
+```swift
+func arithmeticMean(_ numbers: Double...) -> Double {
+    var total: Double = 0
+    for number in numbers {
+        total += number
+    }
+    return total/Double(numbers.count)
+}
+```
+
+ 
 
 ## 5. When to Use This  
 - When logic will be reused.  

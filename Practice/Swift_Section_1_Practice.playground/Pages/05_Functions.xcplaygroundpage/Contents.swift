@@ -276,6 +276,7 @@ func makePolynomial(a: Int, b: Int, c: Int) -> (Int) -> Int {
 }
 let poly = makePolynomial(a: 1, b: 2, c: 1)
 print(poly(3))
+divider()
 // -------------------------------------------------------------
 // MARK: 7. Function types & passing functions
 // -------------------------------------------------------------
@@ -284,23 +285,38 @@ print(poly(3))
 // Example:
 // func square(_ x: Int) -> Int { x * x }
 // applyTwice(square, to: 3)  // → 81 (square(square(3)))
-
-
+func square(_ x: Int) -> Int { x * x }
+func applyTwice(_ fn: (Int) -> Int, to value: Int) -> Int {
+    let first = fn(value)
+    let second = fn(first)
+    return second
+}
+print(applyTwice(square, to: 3))
+divider()
 // -------------------------------------------------------------
 // MARK: 8. Variadic parameters
 // -------------------------------------------------------------
 
 // TODO: Write a function sum(_ numbers: Int...) that returns the total.
 // Example: sum(1, 2, 3, 4) -> 10
+func sum(_ numbers: Int...) -> Int {
+    var total: Int = 0
+    for number in numbers {
+        total += number
+    }
+    return total
+}
 
-
+print(sum(1,2,3)) //6
 // -------------------------------------------------------------
 // MARK: 9. Throwing functions
 // -------------------------------------------------------------
 
 // TODO: Create a function divide(_ a: Int, by b: Int) throws that
 // throws an error when b == 0, otherwise returns a / b.
-
+func divide(_ a: Int, by b: Int) throws {
+    
+}
 
 // -------------------------------------------------------------
 // MARK: 10. Practice Challenge
