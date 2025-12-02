@@ -119,8 +119,13 @@ divider()
 // let greetChris = makeGreeter(for: "Chris")
 // greetChris()   // → "Hello, Chris!"
 func makeGreeter(for name: String) -> () -> String {
+    // Nested function:
+    // - Captures: `name` from the outer function
+    // - Parameters: none
+    // - Returns: A greeting string using the captured `name`
+    // - Behavior: Each call returns "Hello, <name>!"
     func greeter() -> String {
-        return "Hello, \(name)"
+        return "Hello, \(name)!"
     }
     return greeter
 }
@@ -141,8 +146,20 @@ divider()
 // Example:
 // let transform = addThenMultiply(add: 2, multiplyBy: 5)
 // transform(3)   // → (3 + 2) * 5 = 25
-
-
+func addThenMultiply(add: Int, multiplyBy: Int) -> (Int) -> Int {
+    // Nested function:
+    // - Captures: `add` and `multiplyBy`
+    // - Parameters: `number` (the input value)
+    // - Returns: (number + add) * multiplyBy
+    // - Behavior: Performs an add-then-multiply transform
+    func calculate(_ number: Int) -> Int {
+        (number + add) * multiplyBy
+    }
+    return calculate
+}
+let transform = addThenMultiply(add: 5, multiplyBy: 2)
+print(transform(10)) // prints "30"
+divider()
 // -------------------------------------------------------------
 // MARK: 6C. Nested Functions — Choose Operation
 // -------------------------------------------------------------
@@ -157,8 +174,52 @@ divider()
 // Example:
 // let op = operationSelector("square")
 // op(5)  // → 25
+func operationSelector(_ name: String) -> (Int) -> Int {
+    // Nested function:
+    // - Captures: nothing
+    // - Parameters: `x`
+    // - Returns: x * x
+    // - Behavior: Squares the input
+    func square(_ x: Int) -> Int {
+        x * x
+    }
+    
+    // Nested function:
+    // - Captures: nothing
+    // - Parameters: `x`
+    // - Returns: x * 2
+    // - Behavior: Doubles the input
+    func double(_ x: Int) -> Int {
+        x * 2
+    }
+    if name == "square" {
+        return square
+    } else if name == "double"{
+        return double
+    } else {
+       return { x in x }
+    }
+}
+let op = operationSelector("square")
+print(op(5))
+let op2 = operationSelector("double")
+print(op2(5))
+let op3 = operationSelector("other")
+print(op3(5))
 
-
+//The swifty version of the above:
+//func operationSelector(_ name: String) -> (Int) -> Int {
+//    func square(_ x: Int) -> Int { x * x }
+//    func double(_ x: Int) -> Int { x * 2 }
+//    func identity(_ x: Int) -> Int { x }
+//
+//    switch name {
+//    case "square": return square
+//    case "double": return double
+//    default:       return identity
+//    }
+//}
+divider()
 // -------------------------------------------------------------
 // MARK: 6D. Nested Functions — Counter Generator
 // -------------------------------------------------------------
@@ -173,8 +234,24 @@ divider()
 // counter()   // → 11
 // counter()   // → 12
 // counter()   // → 13
-
-
+func makeCounter(startAt: Int) -> () -> Int {
+    var count = startAt
+    // Nested function:
+    // - Captures: `count`, a mutable variable from the outer scope
+    // - Parameters: none
+    // - Returns: Updated count after incrementing by 1
+    // - Behavior: Each call mutates `count` and returns the new value
+    func increment() -> Int {
+        count += 1
+        return count
+    }
+    return increment
+}
+let counter1 = makeCounter(startAt: 10)
+print(counter1())
+print(counter1())
+print(counter1())
+divider()
 // -------------------------------------------------------------
 // MARK: 6E. Nested Functions — Capturing Multiple Values
 // -------------------------------------------------------------
@@ -186,6 +263,19 @@ divider()
 // Example:
 // let poly = makePolynomial(a: 1, b: 2, c: 1)
 // poly(3)  // → 16  (1*9 + 2*3 + 1)
+func makePolynomial(a: Int, b: Int, c: Int) -> (Int) -> Int {
+    // Nested function:
+    // - Captures: coefficients `a`, `b`, and `c`
+    // - Parameters: `x`
+    // - Returns: Result of polynomial ax² + bx + c
+    // - Behavior: Computes the polynomial using captured coefficients
+    func f(_ x: Int) -> Int {
+        (a * (x * x)) + (b * x) + c
+    }
+    return f
+}
+let poly = makePolynomial(a: 1, b: 2, c: 1)
+print(poly(3))
 // -------------------------------------------------------------
 // MARK: 7. Function types & passing functions
 // -------------------------------------------------------------
