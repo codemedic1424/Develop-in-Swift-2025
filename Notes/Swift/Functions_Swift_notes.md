@@ -30,7 +30,7 @@ Functions in Swift are self‑contained chunks of code that perform specific tas
 - You can return multiple values by returning a tuple.
 
 ### 4A. Nested Functions In Swift
-In Swift, a function can exists inside of another function; this is called a nested function.
+In Swift, a function can exist inside of another function; this is called a nested function.
 
 #### Syntax Nested Functions Example
 
@@ -65,7 +65,7 @@ func greetMessage() {
 greetMessage() //will print "Good Morning Abraham!"
 ```
 
-If you try to call the inner function, in the global scope, it will result in an error.
+Inner functions are not visible outside the outer function — attempting to call `displayName()` directly will result in an error.
 
 #### Nested Functions Example (with parameters)
 
@@ -109,12 +109,12 @@ print("Result:", result)
 Breakdown: 
 
 In the above example, `(Int, Int) - > Int` (line 93), the return type states the outer function returns a function with two parameters of type `Int` and a return value of `Int`.
-Next, on line 95, we created an inner function that take two variables of type `Int` with a return value of `Int`. Line 96 returns the sum of the two added variables.
-Next, on line 99, we created another inner function that take two variables of type `Int` with a return value of `Int`. Line 100 returns the difference of the subtracted vaibles.
-Line 102 creates the varible `operation` with a ternary operator that checks if the symbol is equal to "+". If true, it 'routes' the input variables to the add function, if false, to the subtract function.
+Line 95 defines an inner function that takes two variables and returns their sum. Line 96 returns the sum of the two added variables.
+Next, on line 99, we created another inner function that takes two variables of type `Int` with a return value of `Int`. Line 100 returns the difference of the subtracted varibles.
+Line 102 creates the variable `operation` with a ternary operator that checks if the symbol is equal to "+". If true, it 'routes' the input variables to the add function, if false, to the subtract function.
 Line 103 returns the chosen function (add or subtract).
-Line 105 sets the symbol of the function `operate`. 
-Line 106 set the return value of operate. It will be replaced by either `add(8,3)` or `subtract(8,3)` bases on the value of `symbol` passed to `operate()`
+Line 105 calls `operate()` using "+" as the symbol. 
+Line 106 sets the return value of operate. It will be replaced by either `add(8,3)` or `subtract(8,3)` based on the value of `symbol` passed to `operate()`
 Line 107 prints the value of `result` to the console. 
 
 
