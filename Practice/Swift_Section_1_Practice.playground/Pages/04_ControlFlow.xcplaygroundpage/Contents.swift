@@ -10,19 +10,18 @@ import Foundation
 // and prints whether it's low, normal, or high.
 
 func checkHeartRate(_ rate: Int) {
+    // TODO: Your code here
     if rate < 60 {
-        print("Low heart rate: \(rate) bpm")
-    } else if rate <= 100 {
-        print("Normal heart rate: \(rate) bpm")
+        print("\(rate) bpm is considered LOW")
+    } else if rate >= 60 && rate < 100 {
+        print("\(rate) bpm is considered NORMAL")
     } else {
-        print("High heart rate: \(rate) bpm")
+        print("\(rate) bpm is considered HIGH")
     }
 }
-
-checkHeartRate(55)
-checkHeartRate(82)
-checkHeartRate(132)
-
+checkHeartRate(40)
+checkHeartRate(65)
+checkHeartRate(105)
 
 // MARK: - 2. Switch Statements
 // TODO: Use a switch to evaluate call priority (1–4) and print the meaning.
@@ -30,16 +29,17 @@ checkHeartRate(132)
 let callPriority = 3
 
 switch callPriority {
+    // TODO: Add your cases here
 case 1:
-    print("🚨 Priority 1 – Life-threatening")
+    print("Alpha")
 case 2:
-    print("⚠️ Priority 2 – Serious")
+    print("Bravo")
 case 3:
-    print("📟 Priority 3 – Routine")
+    print("Charlie")
 case 4:
-    print("ℹ️ Priority 4 – Non-emergency")
+    print("Delta")
 default:
-    print("Unknown priority")
+    print("ERROR: Invalid Call Priority")
 }
 
 
@@ -49,7 +49,8 @@ default:
 let units = ["Engine 1", "Medic 2", "Truck 1"]
 
 for unit in units {
-    print("Unit responding: \(unit)")
+    // TODO: Print each unit
+    print(unit)
 }
 
 
@@ -58,8 +59,9 @@ for unit in units {
 
 var counter = 1
 
+// TODO: Write your while loop here
 while counter <= 5 {
-    print("Count: \(counter)")
+    print(counter)
     counter += 1
 }
 
@@ -68,9 +70,14 @@ while counter <= 5 {
 // TODO: Loop 1–10, skip even numbers, and stop the loop once you hit 9.
 
 for number in 1...10 {
-    if number % 2 == 0 { continue }
-    if number == 9 { break }
-    print("Odd number: \(number)")
+    // TODO: Skip even numbers, stop at 9
+    if number % 2 == 0 {
+        continue
+    }
+    print(number)
+    if number == 9 {
+        break
+    }
 }
 
 
@@ -78,14 +85,15 @@ for number in 1...10 {
 // TODO: Write a function that checks if a String? is non-empty using guard.
 
 func printName(_ name: String?) {
-    guard let name, !name.isEmpty else {
-        print("❌ No name provided")
+    // TODO: Use guard to unwrap name
+    guard let userName = name, !userName.isEmpty else {
+        print("Name Missing")
         return
     }
-    print("Hello, \(name)!")
+    print("Hello, \(userName)!")
 }
 
+printName("Mike")
 printName(nil)
-printName("Chris")
 
 //: [Next](@next)
