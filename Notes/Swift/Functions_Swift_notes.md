@@ -29,6 +29,95 @@ Functions in Swift are self‑contained chunks of code that perform specific tas
 - A function may or may not return something—if not, its return type is `Void`.  
 - You can return multiple values by returning a tuple.
 
+### 4A. Nested Functions In Swift
+In Swift, a function can exists inside of another function; this is called a nested function.
+
+#### Syntax Nested Functions Example
+
+```swift
+//outer function
+func function1() {
+    //code
+    
+    //inner function
+    func function2() {
+        //code
+    }
+
+}
+```
+
+#### Simple Nested Functions Example (no parameters)
+
+```swift
+//outer function
+func greetMessage() {
+
+    //inner function
+    func displayName() {
+    print("Good Morning Abraham!")
+    }
+    
+    //calling inner function
+    displayName()
+}
+//calling outer function
+greetMessage() //will print "Good Morning Abraham!"
+```
+
+If you try to call the inner function, in the global scope, it will result in an error.
+
+#### Nested Functions Example (with parameters)
+
+```swift
+//outer function
+func addNumbers() {
+    print("Addition")
+    
+    //inner function
+    func display(num1: Int, num2: Int) { //in this example, we will use 5 and 10
+        print("5 + 10 =", num1 + num2)
+    }
+    
+    //calling inner function with two values
+    display(num1: 5, num2: 10)
+}
+
+//calling outer function
+addNumbers() //prints "Addition \n 5+10=15"
+```
+
+#### Nested Functions Example (with Return Values)
+
+```swift
+func operate(symbol: String) -> (Int, Int) -> Int {
+    //inner function to add two numbers
+    func add(num1: Int, num2: Int) -> Int {
+        return num1 + num2
+    }
+    //inner function to subtract two numbers
+    func subtract(num1: Int, num2: Int) -> Int {
+        return num1 - num2
+    }
+    let operation = (symbol == "+") ? add : subtract
+    return operation
+}
+let operation = operate(symbol: "+")
+let result = operation(8, 3)
+print("Result:", result)
+```
+Breakdown: 
+
+In the above example, `(Int, Int) - > Int` (line 93), the return type states the outer function returns a function with two parameters of type `Int` and a return value of `Int`.
+Next, on line 95, we created an inner function that take two variables of type `Int` with a return value of `Int`. Line 96 returns the sum of the two added variables.
+Next, on line 99, we created another inner function that take two variables of type `Int` with a return value of `Int`. Line 100 returns the difference of the subtracted vaibles.
+Line 102 creates the varible `operation` with a ternary operator that checks if the symbol is equal to "+". If true, it 'routes' the input variables to the add function, if false, to the subtract function.
+Line 103 returns the chosen function (add or subtract).
+Line 105 sets the symbol of the function `operate`. 
+Line 106 set the return value of operate. It will be replaced by either `add(8,3)` or `subtract(8,3)` bases on the value of `symbol` passed to `operate()`
+Line 107 prints the value of `result` to the console. 
+
+
 ## 5. When to Use This  
 - When logic will be reused.  
 - When code is getting too long—split into smaller functions.  
