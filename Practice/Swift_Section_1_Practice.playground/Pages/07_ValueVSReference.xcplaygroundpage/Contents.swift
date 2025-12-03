@@ -34,7 +34,7 @@ print("b.x =", b.x)   // what do you expect?
  - Explain why `a` did *not* change when you modified `b`.
  - This demonstrates **value semantics** — write your own definition below.
  */
-
+//structs are value types and each instantiation creates a new 'copy' of the variable that acts independent of any others of the same type. 
 
 // -------------------------------------------------------------
 // MARK: - 2. Basic Reference Type Behavior
@@ -59,6 +59,7 @@ print("dog2.name =", dog2.name)
  - This demonstrates **reference semantics** — define it below.
  */
 
+//classes are reference types. dog1 inherited the name change from dog2 as they reference the same variable instance.
 
 // -------------------------------------------------------------
 // MARK: - 3. Mutating Methods (Struct)
@@ -76,8 +77,8 @@ var c1 = Counter()
 var c2 = c1
 c2.increment()
 
-print("c1.count =", c1.count)  // ?
-print("c2.count =", c2.count)  // ?
+print("c1.count =", c1.count)  // 0
+print("c2.count =", c2.count)  // 1
 
 /*:
  ### 📝 Exercise 3
@@ -85,6 +86,8 @@ print("c2.count =", c2.count)  // ?
  - Why does `mutating` matter for structs?
  */
 
+//c2 was instantiated as a 'copy of c1, therefore they are independent of one another.
+//mutating flag denotes the func is altering the variable, like a method.
 
 // -------------------------------------------------------------
 // MARK: - 4. Class Methods (Reference Types)
@@ -101,14 +104,15 @@ let s1 = Score()
 let s2 = s1
 s2.add()
 
-print("s1.points =", s1.points) // ?
-print("s2.points =", s2.points) // ?
+print("s1.points =", s1.points) // 1
+print("s2.points =", s2.points) // 1
 
 /*:
  ### 📝 Exercise 4
  - Why does `s1` also change here?
  */
 
+//They are reference types - referring to the same instance of the variable - thus the change affects all references to it.
 
 // -------------------------------------------------------------
 // MARK: - 5. Challenge: Convert Between Types
@@ -119,7 +123,7 @@ print("s2.points =", s2.points) // ?
  Convert this *class* into a *struct* and predict how the output changes.
  */
 
-class Box {
+struct Box {
     var height: Int
     init(height: Int) { self.height = height }
 }
@@ -136,8 +140,11 @@ print("boxB.height =", boxB.height)
  Convert this *struct* into a *class* and predict changes.
  */
 
-struct Player {
+class Player {
     var level: Int
+    init(level: Int) {
+        self.level = level
+    }
 }
 
 var pA = Player(level: 1)

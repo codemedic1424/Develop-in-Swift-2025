@@ -308,10 +308,11 @@ func sum(_ numbers: Int...) -> Int {
 }
 
 print(sum(1,2,3)) //6
+divider()
 // -------------------------------------------------------------
 // MARK: 9. Throwing functions
 // -------------------------------------------------------------
-
+//MARK: Throwing functions not covered at this point in curriculum REVISIT
 // TODO: Create a function divide(_ a: Int, by b: Int) throws that
 // throws an error when b == 0, otherwise returns a / b.
 func divide(_ a: Int, by b: Int) throws {
@@ -329,6 +330,24 @@ func divide(_ a: Int, by b: Int) throws {
 //
 // Example:
 // let result = math("cube", 3)  // → 27
-
+func math(_ operation: String, number: Int) -> Int {
+    var x = number
+    func square(_ x: Int) -> Int { x * x }
+    func cube(_ x: Int) -> Int { x * x * x }
+    
+    switch operation {
+    case "square" : return square(number)
+    case "cube" : return cube(number)
+    default:
+        print("ERROR: Invalid operation passed. \(operation)")
+        return number
+    }
+}
+let result = math("cube", number: 3)
+print(result)
+let result2 = math("square", number: 3)
+print(result2)
+let result3 = math("add", number: 3)
+print(result3)
 
 //: [Next](@next)

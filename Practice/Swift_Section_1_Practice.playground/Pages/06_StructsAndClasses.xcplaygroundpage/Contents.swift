@@ -22,17 +22,36 @@ import Foundation
 
  Then create two different `Book` instances.
 */
+//struct creation
+struct Book {
+    var title: String
+    var author: String
+    var pages: Int
+}
+//struct instantiation
+let myFavorite = Book(title: "Moby Dick", author: "Herman Millvile", pages: 927)
+let yourFavorite = Book(title: "Eat, Pray, Love", author: "Elizabeth Gilbert", pages: 367)
 
-
-
+print(myFavorite.title, myFavorite.author)
 
 /*:
  ---
  ## 2. Add a Mutating Method
- Add a method `addPages(_:)` that increases the page count.
- Try calling it on an instance.
-*/
+ 📌 **Advanced Concept (Optional)**
+ The official "Develop in Swift" curriculum does *not* introduce
+ `mutating` methods yet. They appear later in the Swift Programming Language
+ chapter on **Methods** under "Modifying Value Types".
 
+ We include them here early because:
+
+ - Structs are value types
+ - Mutating methods are required when changing stored properties
+ - SwiftUI models and state rely on them heavily
+ - Understanding them now prevents confusion later
+
+ If this feels slightly ahead — that’s normal. Treat this section as
+ *optional enrichment* that prepares you for upcoming SwiftUI work.
+*/
 
 
 
@@ -46,8 +65,18 @@ import Foundation
 
  Then create an instance and modify the mileage.
 */
-
-
+class Vehicle {
+    var make: String
+    var model: String
+    var mileage: Double
+    
+    init(make: String, model: String, mileage: Double) {
+        self.make = make
+        self.model = model
+        self.mileage = mileage
+    }
+}
+let myCar = Vehicle(make: "Ram", model: "1500", mileage: 65432.8)
 
 
 /*:
@@ -75,9 +104,25 @@ import Foundation
  Modify one variable in each pair.
  Observe what happens.
 */
+struct ScoreTracker {
+    var score: Int
+}
+class ScoreKeeper {
+    var score: Int
+    
+    init(score: Int) {
+        self.score = score
+    }
+}
+var myScore = ScoreTracker(score: 10)
+var yourScore = myScore
+let sharedScoreKeeper = ScoreKeeper(score: 20)
+var player1Score = sharedScoreKeeper
+var player2Score = sharedScoreKeeper
+player1Score.score += 5
+myScore.score += 5
 
-
-
+print(myScore, yourScore, player1Score.score, player2Score.score)
 
 /*:
  ---
@@ -98,7 +143,12 @@ import Foundation
 
  Create a few instances and test all behavior.
 */
-
+struct UserProfile {
+    let username: String
+    var age: Int
+    var isPremium: Bool
+    var loginCount: Int
+}
 
 
 
