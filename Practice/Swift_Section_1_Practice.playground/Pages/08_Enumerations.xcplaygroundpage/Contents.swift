@@ -19,10 +19,10 @@ import Foundation
 // -------------------------------------------------------------
 
 enum CompassPoint {
-    case north, south, east, west
+    case north, south, east, west, northEast
 }
 
-var direction = CompassPoint.north
+var direction = CompassPoint.west
 
 /*:
  ### 📝 Exercise 1
@@ -30,7 +30,7 @@ var direction = CompassPoint.north
  - Add a new case: `.northEast`
  - Add a print statement that prints what direction you are heading.
  */
-
+print(direction)
 
 // -------------------------------------------------------------
 // MARK: - 2. Switching on Enums
@@ -46,10 +46,12 @@ func describe(_ direction: CompassPoint) {
         print("Heading east ➡️")
     case .west:
         print("Heading west ⬅️")
+    case .northEast:
+        print("Heading northeast ↗️")
     }
 }
 
-describe(.east)
+describe(.northEast)
 
 /*:
  ### 📝 Exercise 2
@@ -76,7 +78,9 @@ var ticket = Barcode.qrCode("ABCD-1234-XYZ")
  - Write a switch that extracts and prints the associated values.
  */
 
-switch product {
+let qrChris = Barcode.qrCode("Chris")
+
+switch qrChris {
 case let .upc(numberSystem, manufacturer, productCode, checkDigit):
     print("UPC: \(numberSystem), \(manufacturer), \(productCode), \(checkDigit)")
 case let .qrCode(code):
@@ -102,7 +106,9 @@ print("Earth is planet number \(Planet.earth.rawValue)")
  - Print the raw value for Mars.
  - Create a new `Planet(rawValue: 2)` and print which planet it is.
  */
-
+print("Mars is planet number \(Planet.mars.rawValue)")
+let second = Planet(rawValue: 2)
+print("\(second!) is the second planet in the Sol System.")
 
 // -------------------------------------------------------------
 // MARK: - 5. Enum Methods
