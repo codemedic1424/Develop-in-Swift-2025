@@ -48,11 +48,11 @@ Projects live in the `Projects/` folder.
 |---------|---------|--------|
 | Meet Xcode | `Projects/MeetXcode` | ✅ Completed |
 | Story App | `Projects/StoryApp` | ☐ Not Started |
-| Weather App | `Projects/WeatherForecast` | ⏳ In Progress |
+| Weather App | `Projects/WeatherForecast` | ✅ Completed |
 | ScoreKeeper | `Projects/ScoreKeeper` | ⏳ In Progress |
 | Pick‑a‑Pal | `Projects/Pick-a-Pal` | ☐ Not Started |
 | Onboarding Flow | `Projects/OnboardingFlow` | ☐ Not Started |
-| Chat Prototype | `Projects/ChatPrototype` | ☐ Not Started |
+| Chat Prototype | `Projects/ChatPrototype` | ✅ Completed |
 | Dice Roller | `Projects/DiceRoller` | ☐ Not Started |
 
 ---
