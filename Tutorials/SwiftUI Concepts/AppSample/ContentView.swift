@@ -6,12 +6,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        LazyHStack {
             Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+                .imageScale(.medium)
+                .foregroundColor(.teal)
+            Text("Hello, Chris!")
         }
-        .padding()
+        .padding([.leading, .trailing], 40) //syntax for multiple edges
     }
+}
+#Preview {
+    ContentView()
 }
