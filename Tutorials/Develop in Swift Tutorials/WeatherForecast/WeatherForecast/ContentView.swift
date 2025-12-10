@@ -7,43 +7,29 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        Text("Weekly Weather")
-            .font(.title)
-            .underline()
-            .fontWeight(.bold)
-            .foregroundStyle(.secondary)
-        Text("12/08/2025")
-            .font(.caption)
-            .padding(.top, 0.5)
-        VStack{
-            HStack {
-                DayForecast(dayOfWeek: "Mon", isRainy: false, high: 70, low: 50)
-                
-                DayForecast(dayOfWeek: "Tue", isRainy: true, high: 65, low: 48)
-            }
-            HStack {
-                DayForecast(dayOfWeek: "Wed", isRainy: false, high: 70, low: 48)
-                
-                DayForecast(dayOfWeek: "Thu", isRainy: false, high: 78, low: 62)
-            }
-            HStack {
-                DayForecast(dayOfWeek: "Fri", isRainy: false, high: 70, low: 50)
-                
-                DayForecast(dayOfWeek: "Sat", isRainy: true, high: 65, low: 48)
-            }
-            HStack {
-                DayForecast(dayOfWeek: "Sun", isRainy: true, high: 70, low: 55)
-                WeekForecast(rainyDays: 3)
-            }
-        }
+//MARK: Models
+
+// Week Data Model
+struct WeekModel {
+    let days: [DayModel]
+    
+    var highAvg: Int {
+        guard !days.isEmpty else { return 0 }
+        return days.reduce(0) { $0 + $1.high } / days.count
+    }
+    
+    var lowAvg: Int {
+        guard !days.isEmpty else { return 0 }
+        return days.reduce(0) { $0 + $1.low } / days.count
+    }
+    
+    var rainyDays: Int {
+        days.filter { $0.isRainy }.count
     }
 }
 
-struct DayForecast: View {
-    
-    //struct properties
+// Day Data Model
+struct DayModel {
     let dayOfWeek: String
     let isRainy: Bool
     let high: Int
@@ -56,20 +42,27 @@ struct DayForecast: View {
             "sun.max.fill"
         }
     }
-  
-    
+}
+
+//MARK: Views
+
+//Forecast Layout
+struct DayForecast: View {
+    let day: DayModel
     var body: some View {
         VStack {
-            Text(dayOfWeek)
+            Text(day.dayOfWeek)
                 .font(.headline)
-            Image(systemName: weatherImage)
-                .foregroundStyle(weatherImage == "cloud.rain.fill" ? .blue : .yellow)
+            Image(systemName: day.weatherImage)
+                .foregroundStyle(day.weatherImage == "cloud.rain.fill" ? .blue : .yellow)
                 .font(.largeTitle)
                 .padding(5)
-            Text("High: \(high)°F")
-            Text("Low: \(low)°F")
-                .foregroundStyle(low < 50 ? .blue : .primary)
-                .fontWeight(low < 50 ? .bold : .regular)
+            Text("High: \(day.high)°F")
+                .foregroundStyle(day.high > 80 ? .red : .primary)
+                .fontWeight(day.high > 80 ? .bold : .regular)
+            Text("Low: \(day.low)°F")
+                .foregroundStyle(day.low < 50 ? .blue : .primary)
+                .fontWeight(day.low < 50 ? .bold : .regular)
         }
         .padding()
         .background(in: RoundedRectangle(cornerRadius: 5))
@@ -78,20 +71,9 @@ struct DayForecast: View {
     }
 }
 
-//TODO: Finish logic for below
-//Basic structure added
-
+// Week Data Layout
 struct WeekForecast: View {
-    let highs = [70, 65, 70, 78, 70, 65, 70]
-    let lows = [50, 48, 48, 62, 50, 48, 55]
-    var highAvg: Int {
-        highs.reduce(0, +)/highs.count
-    }
-    var lowAvg: Int {
-        lows.reduce(0,+)/lows.count
-    }
-    let rainyDays: Int
-    
+    let week: WeekModel
     
     var body: some View {
         VStack {
@@ -99,12 +81,61 @@ struct WeekForecast: View {
                 .font(.title3)
                 .fontWeight(.bold)
                 .padding(2)
-            Text("Avg. High: \(highAvg)ºF")
-            Text("Avg. Low: \(lowAvg)ºF")
-            Text("# of Rainy Days: ")
+            Text("Avg. High: \(week.highAvg)ºF")
+            Text("Avg. Low: \(week.lowAvg)ºF")
+            Text("# of Rainy Days: \(week.rainyDays)")
         }
     }
 }
+
+struct ContentView: View {
+    let monday = DayModel(dayOfWeek: "Mon", isRainy: false, high: 70, low: 60)
+    let tuesday = DayModel(dayOfWeek: "Tue", isRainy: false, high: 71, low: 61)
+    let wednesday = DayModel(dayOfWeek: "Wed", isRainy: true, high: 72, low: 62)
+    let thursday = DayModel(dayOfWeek: "Thu", isRainy: true, high: 73, low: 63)
+    let friday = DayModel(dayOfWeek: "Fri", isRainy: true, high: 85, low: 75)
+    let saturday = DayModel(dayOfWeek: "Sat", isRainy: false, high: 60, low: 50)
+    let sunday = DayModel(dayOfWeek: "Sun", isRainy: false, high: 55, low: 45)
+    
+    var body: some View {
+        // Title
+        Text("Weekly Weather")
+            .font(.title)
+            .underline()
+            .fontWeight(.bold)
+            .foregroundStyle(.secondary)
+        Text("12/08/2025")
+            .font(.caption)
+            .padding(.top, 0.5)
+        
+        // Card Arrangement
+        VStack{
+            HStack {
+                DayForecast(day: monday)
+                
+                DayForecast(day: tuesday)
+            }
+            HStack {
+                DayForecast(day: wednesday)
+                
+                DayForecast(day: thursday)
+            }
+            HStack {
+                DayForecast(day: friday)
+                
+                DayForecast(day: saturday)
+            }
+            HStack {
+                DayForecast(day: sunday)
+                WeekForecast(week: WeekModel(days: [monday, tuesday, wednesday, thursday, friday, saturday, sunday]))
+            }
+        }
+    }
+}
+
+
+
+
 
 #Preview {
     ContentView()
