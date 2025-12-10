@@ -9,10 +9,10 @@ Located in: `Curriculum/Swift_Pathway`
 
 | Topic | Status | Notes |
 |-------|--------|--------|
-| A Swift Tour | ☐ Not Started | |
-| The Basics (variables, constants) | ☐ Not Started | |
-| Strings & Collections | ☐ Not Started | |
-| Control Flow | ☐ Not Started | |
+| A Swift Tour | ✅ Completed | |
+| The Basics (variables, constants) | ✅ Completed | |
+| Strings & Collections | ✅ Completed | |
+| Control Flow | ✅ Completed | |
 | Functions & Closures | ☐ Not Started | |
 | Structs, Enums, Classes | ☐ Not Started | |
 | Optionals | ☐ Not Started | |
@@ -28,9 +28,9 @@ Located in: `Curriculum/SwiftUI_Pathway`
 
 | Topic | Status | Notes |
 |-------|--------|--------|
-| Meet SwiftUI | ☐ Not Started | |
-| Views & Modifiers | ☐ Not Started | |
-| Stacks & Layout | ☐ Not Started | |
+| Meet SwiftUI | ✅ Completed | |
+| Views & Modifiers | ✅ Completed | |
+| Stacks & Layout | ✅ Completed | |
 | State & Bindings | ☐ Not Started | |
 | Lists & Navigation | ☐ Not Started | |
 | Working With Data | ☐ Not Started | |
@@ -51,7 +51,7 @@ Projects live in the `Projects/` folder.
 | Weather App | `Projects/WeatherForecast` | ✅ Completed |
 | ScoreKeeper | `Projects/ScoreKeeper` | ⏳ In Progress |
 | Pick‑a‑Pal | `Projects/Pick-a-Pal` | ☐ Not Started |
-| Onboarding Flow | `Projects/OnboardingFlow` | ☐ Not Started |
+| Onboarding Flow | `Projects/OnboardingFlow` | ✅ Completed |
 | Chat Prototype | `Projects/ChatPrototype` | ✅ Completed |
 | Dice Roller | `Projects/DiceRoller` | ☐ Not Started |
 
