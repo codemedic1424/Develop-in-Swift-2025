@@ -31,11 +31,13 @@ Located in: `Curriculum/SwiftUI_Pathway`
 | Meet SwiftUI | ✅ Completed | |
 | Views & Modifiers | ✅ Completed | |
 | Stacks & Layout | ✅ Completed | |
+| Building layouts with stack views | ✅ Completed | |
+| HIG: Layout Design Best Practices | ✅ Completed | |
 | State & Bindings | ☐ Not Started | |
 | Lists & Navigation | ☐ Not Started | |
 | Working With Data | ☐ Not Started | |
 | SwiftUI Essentials Video Series | ☐ Not Started | |
-| SwiftUI Cookbook (Navigation) | ☐ Not Started | |
+| SwiftUI Cookbook (Navigation) | ✅ Completed | |
 | Design Pathway (optional) | ☐ Not Started | |
 
 ---
@@ -52,6 +54,7 @@ Projects live in the `Projects/` folder.
 | ScoreKeeper | `Projects/ScoreKeeper` | ⏳ In Progress |
 | Pick‑a‑Pal | `Projects/Pick-a-Pal` | ☐ Not Started |
 | Onboarding Flow | `Projects/OnboardingFlow` | ✅ Completed |
+| Laying out Views (BulletJournal) | `Projects/BulletJournal` | ✅ Completed |
 | Chat Prototype | `Projects/ChatPrototype` | ✅ Completed |
 | Dice Roller | `Projects/DiceRoller` | ☐ Not Started |
 
