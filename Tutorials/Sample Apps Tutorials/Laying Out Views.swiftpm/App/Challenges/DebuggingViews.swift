@@ -6,10 +6,11 @@ import SwiftUI
 
 struct HalfCard: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .trailing){
             Image(systemName: "crown.fill")
                 .font(.system(size: 80))
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         //#-learning-code-snippet(6.debugFrameCorrection)
         .overlay (alignment: .topLeading) {
             VStack {
@@ -22,7 +23,6 @@ struct HalfCard: View {
             }
             .padding()
         }
-        .border(.green)
         //#-learning-code-snippet(6.debugFrameQuestion)
         //#-learning-code-snippet(6.debugFrame)
         //#-learning-code-snippet(6.debugBorder)
