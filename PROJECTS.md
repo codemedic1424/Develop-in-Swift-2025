@@ -13,11 +13,11 @@ Located in: `Curriculum/Swift_Pathway`
 | The Basics (variables, constants) | ✅ Completed | |
 | Strings & Collections | ✅ Completed | |
 | Control Flow | ✅ Completed | |
-| Functions & Closures | ☐ Not Started | |
-| Structs, Enums, Classes | ☐ Not Started | |
-| Optionals | ☐ Not Started | |
+| Functions & Closures | ✅ Completed  | Revisit Closures |
+| Structs, Enums, Classes | ✅ Completed  | |
+| Optionals | ✅ Completed  | |
 | Protocols | ☐ Not Started | |
-| Generics | ☐ Not Started | |
+| Generics | ✅ Completed | |
 | Concurrency Basics | ☐ Not Started | |
 | Swift 6 Updates | ☐ Not Started | |
 
