@@ -1,6 +1,6 @@
 //
-//  DiceRolerApp.swift
-//  DiceRoler
+//  DiceRollerApp.swift
+//  DiceRoller
 //
 //  Created by Christopher Wilshusen on 12/16/25.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct DiceRolerApp: App {
+struct DiceRollerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

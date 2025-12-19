@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		7C0D53372EF1A8DA00668F65 /* DiceRoler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceRoler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C0D53372EF1A8DA00668F65 /* DiceRoller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiceRoller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7C0D53392EF1A8DA00668F65 /* DiceRoler */ = {
+		7C0D53392EF1A8DA00668F65 /* DiceRoller */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DiceRoler;
+			path = DiceRoller;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +32,7 @@
 		7C0D532E2EF1A8DA00668F65 = {
 			isa = PBXGroup;
 			children = (
-				7C0D53392EF1A8DA00668F65 /* DiceRoler */,
+				7C0D53392EF1A8DA00668F65 /* DiceRoller */,
 				7C0D53382EF1A8DA00668F65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +40,7 @@
 		7C0D53382EF1A8DA00668F65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C0D53372EF1A8DA00668F65 /* DiceRoler.app */,
+				7C0D53372EF1A8DA00668F65 /* DiceRoller.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,9 +48,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7C0D53362EF1A8DA00668F65 /* DiceRoler */ = {
+		7C0D53362EF1A8DA00668F65 /* DiceRoller */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C0D53422EF1A8DC00668F65 /* Build configuration list for PBXNativeTarget "DiceRoler" */;
+			buildConfigurationList = 7C0D53422EF1A8DC00668F65 /* Build configuration list for PBXNativeTarget "DiceRoller" */;
 			buildPhases = (
 				7C0D53332EF1A8DA00668F65 /* Sources */,
 				7C0D53342EF1A8DA00668F65 /* Frameworks */,
@@ -61,13 +61,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7C0D53392EF1A8DA00668F65 /* DiceRoler */,
+				7C0D53392EF1A8DA00668F65 /* DiceRoller */,
 			);
-			name = DiceRoler;
+			name = DiceRoller;
 			packageProductDependencies = (
 			);
 			productName = DiceRoler;
-			productReference = 7C0D53372EF1A8DA00668F65 /* DiceRoler.app */;
+			productReference = 7C0D53372EF1A8DA00668F65 /* DiceRoller.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +85,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7C0D53322EF1A8DA00668F65 /* Build configuration list for PBXProject "DiceRoler" */;
+			buildConfigurationList = 7C0D53322EF1A8DA00668F65 /* Build configuration list for PBXProject "DiceRoller" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -99,7 +99,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7C0D53362EF1A8DA00668F65 /* DiceRoler */,
+				7C0D53362EF1A8DA00668F65 /* DiceRoller */,
 			);
 		};
 /* End PBXProject section */
@@ -313,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7C0D53322EF1A8DA00668F65 /* Build configuration list for PBXProject "DiceRoler" */ = {
+		7C0D53322EF1A8DA00668F65 /* Build configuration list for PBXProject "DiceRoller" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C0D53402EF1A8DC00668F65 /* Debug */,
@@ -322,7 +322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C0D53422EF1A8DC00668F65 /* Build configuration list for PBXNativeTarget "DiceRoler" */ = {
+		7C0D53422EF1A8DC00668F65 /* Build configuration list for PBXNativeTarget "DiceRoller" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C0D53432EF1A8DC00668F65 /* Debug */,

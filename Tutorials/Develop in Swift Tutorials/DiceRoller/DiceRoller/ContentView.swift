@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  DiceRoler
+//  DiceRoller
 //
 //  Created by Christopher Wilshusen on 12/16/25.
 //
