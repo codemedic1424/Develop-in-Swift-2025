@@ -15,56 +15,63 @@ struct ContentView: View {
         Player(name: "Linda", score: 0)
     ]
     
+    func movePlayers(from source: IndexSet, to destination: Int) {
+        players.move(fromOffsets: source, toOffset: destination)
+    }
     
     var body: some View {
-        
-        Text("Score Keeper")
-            .font(.title)
-            .bold()
-            .padding(.bottom)
-        
-        EditButton()
-        
         NavigationStack {
-// TODO: Finish list reorder logic
-                List {
-                    ForEach($players) { $player in
-                        Text("\(player.name)")
-                        
-                        //  Text("\(player.score)")
-                        //  Stepper("\(player.score)", value: $player.score)
-                        //    .labelsHidden()
-                    }
+            List {
+                ForEach(players) { player in
+                    Text("\(player.name)")
                 }
-                .onMove(perform: <#T##Optional<(Foundation.IndexSet, Int) -> Void>#>)
+                .onMove(perform: movePlayers)
                 
-                .padding(.vertical)
                 
                 Button("Add Player", systemImage: "plus") {
                     players.append(Player(name: "", score: 0))
                 }
                 .autocorrectionDisabled()
-                
-                HStack(alignment: .center) {
-                    Spacer()
-                    Button("Reset Scores") {
-                        for i in players.indices {
-                            players[i].score = 0
-                        }
+            }
+            
+            HStack(alignment: .center) {
+                Spacer()
+                Button("Reset Scores") {
+                    for i in players.indices {
+                        players[i].score = 0
                     }
-                    .tint(.red.opacity(0.8))
-                    .buttonStyle(.glassProminent)
-                    .padding(.top)
-                    
-                    Spacer()
                 }
-                
+                .tint(.red.opacity(0.8))
+                .buttonStyle(.glassProminent)
+                .padding(.top)
+            }
+            
+            
+            .navigationTitle("Score Keeper")
+            .toolbar {
+                EditButton()
+            }
+            .padding(.vertical)
+            
+            
+            
+            HStack(alignment: .center) {
+                Spacer()
+                Button("Reset Scores") {
+                    for i in players.indices {
+                        players[i].score = 0
+                    }
+                }
+                .tint(.red.opacity(0.8))
+                .buttonStyle(.glassProminent)
+                .padding(.top)
                 
                 Spacer()
             }
             .padding()
         }
     }
+}
 
 #Preview {
     ContentView()
