@@ -14,6 +14,11 @@ struct ContentView: View {
         Player(name: "Theo", score: 0),
         Player(name: "Linda", score: 0)
     ]
+    @State private var editMode: EditMode = .inactive
+
+    private var isEditing: Bool {
+        editMode.isEditing
+    }
     
     func movePlayers(from source: IndexSet, to destination: Int) {
         players.move(fromOffsets: source, toOffset: destination)
@@ -22,53 +27,53 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(players) { player in
-                    Text("\(player.name)")
+                Section {
+                    ForEach($players) { $player in
+                        HStack {
+                            if isEditing {
+                                TextField("Name", text: $player.name)
+                                    .autocorrectionDisabled()
+                            } else {
+                                Text(player.name)
+                            }
+                            
+                            Spacer()
+                            
+                            Text("\(player.score)")
+                                .monospacedDigit()
+                            
+                            Stepper("", value: $player.score)
+                                .labelsHidden()
+                        }
+                    }
+                    .onMove(perform: movePlayers)
                 }
-                .onMove(perform: movePlayers)
                 
+//                Section {
+//                    if isEditing {
+//                        Button("Add Player", systemImage: "plus") {
+//                            players.append(Player(name: "", score: 0))
+//                        }
+//                    }
+//                }
                 
-                Button("Add Player", systemImage: "plus") {
-                    players.append(Player(name: "", score: 0))
-                }
-                .autocorrectionDisabled()
-            }
-            
-            HStack(alignment: .center) {
-                Spacer()
-                Button("Reset Scores") {
-                    for i in players.indices {
-                        players[i].score = 0
+                Section {
+                    HStack(alignment: .center) {
+                        Button("Reset Scores") {
+                            for i in players.indices {
+                                players[i].score = 0
+                            }
+                        }
+                        .tint(.red.opacity(0.8))
+                        .buttonStyle(.glassProminent)
                     }
                 }
-                .tint(.red.opacity(0.8))
-                .buttonStyle(.glassProminent)
-                .padding(.top)
             }
-            
-            
             .navigationTitle("Score Keeper")
             .toolbar {
                 EditButton()
             }
-            .padding(.vertical)
-            
-            
-            
-            HStack(alignment: .center) {
-                Spacer()
-                Button("Reset Scores") {
-                    for i in players.indices {
-                        players[i].score = 0
-                    }
-                }
-                .tint(.red.opacity(0.8))
-                .buttonStyle(.glassProminent)
-                .padding(.top)
-                
-                Spacer()
-            }
-            .padding()
+            .environment(\.editMode, $editMode)
         }
     }
 }

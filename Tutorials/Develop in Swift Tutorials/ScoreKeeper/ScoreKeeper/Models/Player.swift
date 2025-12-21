@@ -9,7 +9,7 @@ import Foundation
 
 struct Player: Identifiable {
     // MARK: Struct Variables
-    var id = UUID()
+    let id = UUID()
     
     // MARK: Model Variables
     var name: String
