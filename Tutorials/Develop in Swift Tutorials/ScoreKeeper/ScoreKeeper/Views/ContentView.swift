@@ -5,6 +5,8 @@
 //  Created by Christopher Wilshusen on 12/20/25.
 //
 
+// TODO: Refactor row layout to separtate model 
+
 import SwiftUI
 
 struct ContentView: View {
